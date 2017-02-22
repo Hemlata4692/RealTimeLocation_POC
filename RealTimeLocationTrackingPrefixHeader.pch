@@ -1,0 +1,22 @@
+//
+//  RealTimeLocationTrackingPrefixHeader.pch
+//  RealTimeLocationTracking
+//
+//  Created by Monika Sharma on 14/02/17.
+//  Copyright © 2017 Ranosys. All rights reserved.
+//
+
+#ifndef RealTimeLocationTrackingPrefixHeader_pch
+#define RealTimeLocationTrackingPrefixHeader_pch
+#import "AppDelegate.h"
+#import "UserDefaultManager.h"
+#import "Internet.h"
+#import "LocationObject.h"
+
+#define myDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+#define googleAPIKey @"AIzaSyBnoZWo3Ah8yQLZmRM38TPOUpj00TcMLi4"
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* RealTimeLocationTrackingPrefixHeader_pch */
