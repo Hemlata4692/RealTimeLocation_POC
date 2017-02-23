@@ -7,8 +7,6 @@
 //
 
 #import "MapViewController.h"
-#import "GoogleMapView.h"
-#import "SelectPlaceViewController.h"
 @interface MapViewController ()
 {
     CLLocationCoordinate2D currentLocation;
@@ -32,6 +30,9 @@
     //Initialize google map delegate
     _googleMapView.delegate = _googleMapView;
     
+    //Set map view type
+    //    _googleMapView.mapType=kGMSTypeHybrid;
+    
     //Fetch current location
     [self fetchCurrentLocation];
     
@@ -48,7 +49,7 @@
         
         currentLocation.latitude = [_latitude floatValue];
         currentLocation.longitude = [_longitude floatValue];
-        [_locationManager getAddressMethod:currentLocation];
+        [_locationManager getAddressMethod:currentLocation isDirectionScreen:NO];
     }
     
     // hide navigation bar
@@ -63,10 +64,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark - end
-#pragma mark - Post notification(receive location)
 
+#pragma mark - Post notification(receive location)
 - (void)showPinOnLcation:(NSNotification *)notification {
     NSLog(@"notification received: %@",notification.userInfo);
     
@@ -78,10 +78,9 @@
                                                              zoom:14];
     [self displayLocationOnMap:currentLocation camera:_googleMapView.camera userAddress:address];
 }
-
 #pragma mark - end
-#pragma mark - Show location on marker
 
+#pragma mark - Show location on marker
 -(void)fetchCurrentLocation {
     [_locationManager getLocationInfo];
 }
@@ -98,10 +97,9 @@
     _locationManager.marker.draggable = true;
     
 }
-
 #pragma mark - end
-#pragma mark - Start background location updates
 
+#pragma mark - Start background location updates
 - (IBAction)startLocationTrackingAction:(id)sender {
     
     if (_trackingButton.selected)
@@ -118,15 +116,14 @@
     
 }
 #pragma mark - end
-#pragma mark - Textfield delegates
 
+#pragma mark - Textfield delegates
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     
     UIStoryboard * storyboard=storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SelectPlaceViewController *pushView =[storyboard instantiateViewControllerWithIdentifier:@"SelectPlaceViewController"];
-    pushView.latitude=[NSString stringWithFormat:@"%f",currentLocation.latitude];
-    pushView.longitude=[NSString stringWithFormat:@"%f",currentLocation.longitude];
-    pushView.locationViewObj=self;
+    pushView.isDirectionView = false;
+     pushView.MapViewObj=self;
     [self.navigationController pushViewController:pushView animated:YES];
     
 }
@@ -138,7 +135,16 @@
     [textField resignFirstResponder];
     return YES;
 }
+#pragma mark - end
 
+#pragma mark - Get directions
+- (IBAction)getDirectionButtonAction:(id)sender {
+    
+    UIStoryboard * storyboard=storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *pushView =[storyboard instantiateViewControllerWithIdentifier:@"DirectionPathViewController"];
+    [self.navigationController pushViewController:pushView animated:YES];
+    
+}
 #pragma mark - end
 
 /*

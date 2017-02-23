@@ -21,14 +21,14 @@
 - (void) mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)googlemarker {
     NSLog(@"didEndDraggingMarker");
     _locationManager = [[LocationObject alloc]init];
-    [_locationManager getAddressMethod:googlemarker.position];
+    [_locationManager getAddressMethod:googlemarker.position isDirectionScreen:NO];
 }
 
 #pragma mark - Long press delegate method
 - (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
     NSLog(@"didLongPressAtCoordinate");
     _locationManager = [[LocationObject alloc]init];
-    [_locationManager getAddressMethod:coordinate];
+    [_locationManager getAddressMethod:coordinate isDirectionScreen:NO];
 }
 #pragma mark - end
 @end

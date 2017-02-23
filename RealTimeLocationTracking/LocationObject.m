@@ -24,9 +24,7 @@
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         
         _marker = [[GMSMarker alloc] init];
-        _marker.draggable = true;
-        _marker.tappable = true;
-        
+        _destinationMarker = [[GMSMarker alloc] init];
         isCurrentLocationUpdated = false;
     }
     return self;
@@ -48,7 +46,7 @@
         isCurrentLocationUpdated = true;
         NSLog(@"lat%f - lon%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
         [locationManager stopUpdatingLocation];
-        [self getAddressMethod:newLocation.coordinate];
+        [self getAddressMethod:newLocation.coordinate isDirectionScreen:NO];
         
     }
     if (isBackgroundLocationStarted) {
@@ -75,7 +73,7 @@
 #pragma mark - end
 #pragma mark - Get address from coordinates
 
--(void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate {
+-(void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate isDirectionScreen:(BOOL)isDirectionScreen{
     [self getAddressFromLatLong:locationCoordinate.latitude longitude:locationCoordinate.longitude];
     [self parseDic:json];
     
@@ -85,8 +83,13 @@
     
     NSDictionary *locationDict = [NSDictionary new];
     locationDict = @{@"latitude":trackingLatitude,@"longitude": trackingLongitude,@"locationAddress":userAddress};
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"newLocationAddress" object:nil userInfo:locationDict];
+    
+    if (isDirectionScreen) {
+        [_delegate showPinOnLcation:locationDict];
+        
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"newLocationAddress" object:nil userInfo:locationDict];
+    }
 }
 -(id) getAddressFromLatLong:(float)latitude longitude:(float)longitude {
     
@@ -193,14 +196,13 @@
     //parse out the json data
     NSError* error;
     NSDictionary* jsonDict = [NSJSONSerialization
-                          JSONObjectWithData:responseData options:kNilOptions
-                          error:&error];
+                              JSONObjectWithData:responseData options:kNilOptions
+                              error:&error];
     [_delegate returnAutocompleteSearchResults:jsonDict isSearchValue:true];
 }
-
 #pragma mark - end
-#pragma mark - Fetch location coordinate from address
 
+#pragma mark - Fetch location coordinate from address
 -(void)fetchLatitudeLongitudeFromAddress:(NSString *)addressString {
     
     NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=false", [NSString stringWithFormat:@"%@",addressString]];
@@ -220,12 +222,40 @@
     //parse out the json data
     NSError* error;
     NSDictionary* jsonDict = [NSJSONSerialization
-                          JSONObjectWithData:responseData options:kNilOptions
-                          error:&error];
+                              JSONObjectWithData:responseData options:kNilOptions
+                              error:&error];
     //The results from Google will be an array obtained from the NSDictionary object with the key "results".
     [_delegate returnAutocompleteSearchResults:jsonDict isSearchValue:false];
 }
 #pragma mark - end
 
+#pragma mark - Fetch direction path
+-(void)fetchDirectionPathResults:(CLLocationCoordinate2D)sourceLocation destinationLocation:(CLLocationCoordinate2D)destinationLocation {
+    
+    NSString *url = [NSString stringWithFormat:
+                     @"%@?origin=%f,%f&destination=%f,%f&sensor=true&key=%@",
+                     @"https://maps.googleapis.com/maps/api/directions/json",
+                     sourceLocation.latitude,sourceLocation.longitude,
+                     destinationLocation.latitude,destinationLocation.longitude,
+                     googleAPIKey];
+    NSString* urlTextEscaped = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    //Formulate the string as URL object.
+    NSURL *googleRequestURL=[NSURL URLWithString:urlTextEscaped];
+    // Retrieve the results of the URL.
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL: googleRequestURL];
+        [self performSelectorOnMainThread:@selector(fetchedDirectionData:) withObject:data waitUntilDone:YES];
+    });
+    
+}
+- (void)fetchedDirectionData:(NSData *)responseData {
+    //parse out the json data
+    NSError* error;
+    NSDictionary* jsonDict = [NSJSONSerialization
+                              JSONObjectWithData:responseData options:kNilOptions
+                              error:&error];
+    [_delegate returnDirectionResults:jsonDict];
+}
+#pragma mark - end
 
 @end

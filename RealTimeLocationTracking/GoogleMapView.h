@@ -7,8 +7,8 @@
 //
 
 #import <GoogleMaps/GoogleMaps.h>
-
 @interface GoogleMapView : GMSMapView<GMSMapViewDelegate>
+
 @property (nonatomic, strong) LocationObject *locationManager;
 
 @end

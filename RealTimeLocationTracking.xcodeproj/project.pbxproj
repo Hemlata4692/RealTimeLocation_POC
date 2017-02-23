@@ -13,6 +13,9 @@
 		5D8123191E5563A90094DDB3 /* SelectPlacesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8123171E5563A90094DDB3 /* SelectPlacesViewCell.m */; };
 		5D90B7F21E54583500F14797 /* Internet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D90B7F11E54583500F14797 /* Internet.m */; };
 		5D90B7F51E5459E200F14797 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D90B7F41E5459E200F14797 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5D9147C21E5D9D6F00B24F17 /* StreetMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9147C11E5D9D6F00B24F17 /* StreetMapView.m */; };
+		5D9147C61E5DAB3700B24F17 /* DirectionPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9147C51E5DAB3700B24F17 /* DirectionPathViewController.m */; };
+		5D958B301E5EE5E700587104 /* UITextField+Validations.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D958B2F1E5EE5E700587104 /* UITextField+Validations.m */; };
 		5D9A40E11E5C00AD003F5517 /* GoogleMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9A40E01E5C00AD003F5517 /* GoogleMapView.m */; };
 		5D9E47D81E5AB64F006949A9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E47D71E5AB64F006949A9 /* MapViewController.m */; };
 		5D9E47DB1E5AFDB2006949A9 /* LocationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E47DA1E5AFDB2006949A9 /* LocationObject.m */; };
@@ -42,6 +45,12 @@
 		5D90B7F11E54583500F14797 /* Internet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Internet.m; sourceTree = "<group>"; };
 		5D90B7F31E5459E200F14797 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		5D90B7F41E5459E200F14797 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		5D9147C01E5D9D6F00B24F17 /* StreetMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreetMapView.h; sourceTree = "<group>"; };
+		5D9147C11E5D9D6F00B24F17 /* StreetMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreetMapView.m; sourceTree = "<group>"; };
+		5D9147C41E5DAB3700B24F17 /* DirectionPathViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionPathViewController.h; sourceTree = "<group>"; };
+		5D9147C51E5DAB3700B24F17 /* DirectionPathViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionPathViewController.m; sourceTree = "<group>"; };
+		5D958B2E1E5EE5E700587104 /* UITextField+Validations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Validations.h"; sourceTree = "<group>"; };
+		5D958B2F1E5EE5E700587104 /* UITextField+Validations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Validations.m"; sourceTree = "<group>"; };
 		5D9A40DF1E5C00AD003F5517 /* GoogleMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapView.h; sourceTree = "<group>"; };
 		5D9A40E01E5C00AD003F5517 /* GoogleMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapView.m; sourceTree = "<group>"; };
 		5D9E47D61E5AB64F006949A9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -142,6 +151,24 @@
 			name = MainDemoView;
 			sourceTree = "<group>";
 		};
+		5D9147C31E5DAAF700B24F17 /* DirectionModule */ = {
+			isa = PBXGroup;
+			children = (
+				5D9147C41E5DAB3700B24F17 /* DirectionPathViewController.h */,
+				5D9147C51E5DAB3700B24F17 /* DirectionPathViewController.m */,
+			);
+			name = DirectionModule;
+			sourceTree = "<group>";
+		};
+		5D958B311E5EE5F300587104 /* ValidationCategory */ = {
+			isa = PBXGroup;
+			children = (
+				5D958B2E1E5EE5E700587104 /* UITextField+Validations.h */,
+				5D958B2F1E5EE5E700587104 /* UITextField+Validations.m */,
+			);
+			name = ValidationCategory;
+			sourceTree = "<group>";
+		};
 		5D9E47D21E5AA670006949A9 /* LocationManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +176,8 @@
 				5D9E47DA1E5AFDB2006949A9 /* LocationObject.m */,
 				5D9A40DF1E5C00AD003F5517 /* GoogleMapView.h */,
 				5D9A40E01E5C00AD003F5517 /* GoogleMapView.m */,
+				5D9147C01E5D9D6F00B24F17 /* StreetMapView.h */,
+				5D9147C11E5D9D6F00B24F17 /* StreetMapView.m */,
 			);
 			name = LocationManager;
 			sourceTree = "<group>";
@@ -187,6 +216,7 @@
 		5DA1FDE31E52DD170076B880 /* SupportingClasses */ = {
 			isa = PBXGroup;
 			children = (
+				5D958B311E5EE5F300587104 /* ValidationCategory */,
 				5D9E47D21E5AA670006949A9 /* LocationManager */,
 				5D90B7EF1E54582C00F14797 /* Reachability */,
 				5DA1FDFB1E52E83D0076B880 /* DatabaseHandler */,
@@ -274,6 +304,7 @@
 		5DA1FDFA1E52E7BE0076B880 /* DemoModule */ = {
 			isa = PBXGroup;
 			children = (
+				5D9147C31E5DAAF700B24F17 /* DirectionModule */,
 				5D9147BE1E5D91B000B24F17 /* MainDemoView */,
 				5D9147BC1E5D441E00B24F17 /* MapView */,
 			);
@@ -481,9 +512,12 @@
 				5DA1FDEB1E52DEEC0076B880 /* NullValueChecker.m in Sources */,
 				5DA1FE131E5326D40076B880 /* MyDatabase.m in Sources */,
 				5D8123181E5563A90094DDB3 /* SelectPlaceViewController.m in Sources */,
+				5D9147C61E5DAB3700B24F17 /* DirectionPathViewController.m in Sources */,
 				5D90B7F51E5459E200F14797 /* Reachability.m in Sources */,
 				5DA1FDF81E52E2780076B880 /* MMMaterialDesignSpinner.m in Sources */,
 				5D9A40E11E5C00AD003F5517 /* GoogleMapView.m in Sources */,
+				5D9147C21E5D9D6F00B24F17 /* StreetMapView.m in Sources */,
+				5D958B301E5EE5E700587104 /* UITextField+Validations.m in Sources */,
 				5D8123191E5563A90094DDB3 /* SelectPlacesViewCell.m in Sources */,
 				5DA1FDE71E52DED10076B880 /* UserDefaultManager.m in Sources */,
 				5DA1FE0D1E531D500076B880 /* DemoViewController.m in Sources */,

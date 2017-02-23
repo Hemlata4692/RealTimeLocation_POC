@@ -12,6 +12,10 @@
 @protocol getAutocompleteResultDelegate <NSObject>
 @optional
 -(void)returnAutocompleteSearchResults:(NSDictionary *)jsonResult isSearchValue:(BOOL)isSearchValue;
+//Fetch direction API result
+-(void)returnDirectionResults:(NSDictionary *)jsonResult;
+//Fetch address for direction path screen
+- (void)showPinOnLcation:(NSDictionary *)locationData ;
 @end
 
 @interface LocationObject : NSObject<CLLocationManagerDelegate> {
@@ -25,10 +29,15 @@
     NSTimer *localTimer;
     NSString *trackingLatitude, *trackingLongitude,*trackingDate;
 }
+
 //Autocomplete
 -(void) fetchAutocompleteResult: (NSString *) searchKey;
 @property (nonatomic,strong) id <getAutocompleteResultDelegate>delegate;
 -(void) fetchLatitudeLongitudeFromAddress: (NSString *) descriptionString;
+
+//Direction API
+@property (nonatomic, strong) GMSMarker *destinationMarker;
+-(void)fetchDirectionPathResults:(CLLocationCoordinate2D)sourceLocation destinationLocation:(CLLocationCoordinate2D)destinationLocation;
 
 //location manager
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -36,7 +45,7 @@
 
 //To fetch current location
 - (void)getLocationInfo;
--(void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate;
+-(void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate isDirectionScreen:(BOOL)isDirectionScreen;
 
 //Background location tracking
 - (void)startTrack;

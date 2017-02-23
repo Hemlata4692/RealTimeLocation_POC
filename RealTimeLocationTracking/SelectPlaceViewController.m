@@ -19,9 +19,8 @@
 @end
 
 @implementation SelectPlaceViewController
-@synthesize latitude;
-@synthesize longitude;
-@synthesize locationViewObj;
+@synthesize MapViewObj;
+@synthesize DirectionViewObj;
 
 #pragma mark - Life cycle
 - (void)viewDidLoad {
@@ -137,15 +136,35 @@
     
     NSDictionary *tempDict=locationDict[@"geometry"];
     NSDictionary * latLongDict =tempDict[@"location"];
-    locationViewObj.latitude=latLongDict[@"lat"];
-    locationViewObj.longitude=latLongDict[@"lng"];
-    locationViewObj.otherLocation=@"1";
-    for (UIViewController *controller in self.navigationController.viewControllers) {
-        if ([controller isKindOfClass:[MapViewController class]]) {
-            [self.navigationController popToViewController:controller animated:YES];
-            break;
-        }
+    
+    NSArray *array = [self.navigationController viewControllers];
+    
+    if (_isDirectionView) {
+        DirectionViewObj.latitude=latLongDict[@"lat"];
+        DirectionViewObj.longitude=latLongDict[@"lng"];
+        DirectionViewObj.autoCompleteLocation=@"2";
+        [self.navigationController popToViewController:[array objectAtIndex:2] animated:YES];
+    } else {
+        MapViewObj.latitude=latLongDict[@"lat"];
+        MapViewObj.longitude=latLongDict[@"lng"];
+        MapViewObj.otherLocation=@"1";
+        [self.navigationController popToViewController:[array objectAtIndex:1] animated:YES];
     }
+//    for (UIViewController *controller in self.navigationController.viewControllers) {
+//        if ([controller isKindOfClass:[MapViewController class]]) {
+//            MapViewObj.latitude=latLongDict[@"lat"];
+//            MapViewObj.longitude=latLongDict[@"lng"];
+//            MapViewObj.otherLocation=@"1";
+//            [self.navigationController popToViewController:[array objectAtIndex:1] animated:YES];
+//            break;
+//        } else if ([controller isKindOfClass:[DirectionPathViewController class]]){
+//            DirectionViewObj.latitude=latLongDict[@"lat"];
+//            DirectionViewObj.longitude=latLongDict[@"lng"];
+//            DirectionViewObj.autoCompleteLocation=@"1";
+//            [self.navigationController popToViewController:[array objectAtIndex:2] animated:YES];
+//            break;
+//        }
+//    }
 }
 #pragma mark - end
 

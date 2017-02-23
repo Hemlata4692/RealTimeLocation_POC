@@ -9,9 +9,13 @@
 #ifndef RealTimeLocationTrackingPrefixHeader_pch
 #define RealTimeLocationTrackingPrefixHeader_pch
 #import "AppDelegate.h"
+#import "UITextField+Validations.h"
+#import "SelectPlaceViewController.h"
 #import "UserDefaultManager.h"
 #import "Internet.h"
 #import "LocationObject.h"
+#import "GoogleMapView.h"
+@import GoogleMaps;
 
 #define myDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #define googleAPIKey @"AIzaSyBnoZWo3Ah8yQLZmRM38TPOUpj00TcMLi4"
