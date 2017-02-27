@@ -21,24 +21,9 @@
     if(remoteHostStatus == NotReachable)
     {
         
-        UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle:@"Connection Error"
-                                              message:@"Please check your internet connection."
-                                              preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* okAction = [UIAlertAction
-                                   actionWithTitle:@"OK"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction *action)
-                                   {
-                                       
-                                       [alertController dismissViewControllerAnimated:YES completion:nil];
-                                       
-                                   }];
-        
-        [alertController addAction:okAction];
-        
-        
+        UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Please check your internet connection." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+        [av show];
+            
         return YES;
     }
     else

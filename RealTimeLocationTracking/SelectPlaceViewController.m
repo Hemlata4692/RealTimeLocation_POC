@@ -150,21 +150,6 @@
         MapViewObj.otherLocation=@"1";
         [self.navigationController popToViewController:[array objectAtIndex:1] animated:YES];
     }
-//    for (UIViewController *controller in self.navigationController.viewControllers) {
-//        if ([controller isKindOfClass:[MapViewController class]]) {
-//            MapViewObj.latitude=latLongDict[@"lat"];
-//            MapViewObj.longitude=latLongDict[@"lng"];
-//            MapViewObj.otherLocation=@"1";
-//            [self.navigationController popToViewController:[array objectAtIndex:1] animated:YES];
-//            break;
-//        } else if ([controller isKindOfClass:[DirectionPathViewController class]]){
-//            DirectionViewObj.latitude=latLongDict[@"lat"];
-//            DirectionViewObj.longitude=latLongDict[@"lng"];
-//            DirectionViewObj.autoCompleteLocation=@"1";
-//            [self.navigationController popToViewController:[array objectAtIndex:2] animated:YES];
-//            break;
-//        }
-//    }
 }
 #pragma mark - end
 

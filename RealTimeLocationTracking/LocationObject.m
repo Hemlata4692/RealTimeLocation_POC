@@ -47,17 +47,19 @@
         NSLog(@"lat%f - lon%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
         [locationManager stopUpdatingLocation];
         [self getAddressMethod:newLocation.coordinate isDirectionScreen:NO];
+       
         
-    }
-    if (isBackgroundLocationStarted) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        NSLocale *locale = [[NSLocale alloc]
-                            initWithLocaleIdentifier:@"en_US"];
-        [dateFormatter setLocale:locale];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        trackingDate = [dateFormatter stringFromDate:newLocation.timestamp];
-        trackingLatitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.latitude];
-        trackingLongitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.longitude];
+        if (isBackgroundLocationStarted) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            NSLocale *locale = [[NSLocale alloc]
+                                initWithLocaleIdentifier:@"en_US"];
+            [dateFormatter setLocale:locale];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            trackingDate = [dateFormatter stringFromDate:newLocation.timestamp];
+            trackingLatitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.latitude];
+            trackingLongitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.longitude];
+        }
+
     }
     
 }
@@ -134,22 +136,36 @@
 #pragma mark - end
 #pragma mark - Tracking methods
 //Start location tracking
-- (void)startTrack {
+- (void)startTrack:(int)syncTime dist:(int)dist {
     
+    minDist = dist;
     isBackgroundLocationStarted = true;
     if ([locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)]) {
         locationManager.allowsBackgroundLocationUpdates = YES;
     }
     locationManager.pausesLocationUpdatesAutomatically = NO;
     // Start location updates
+    isCurrentLocationUpdated= false;
     [locationManager startUpdatingLocation];
     if (![localTimer isValid]) {
-        localTimer = [NSTimer scheduledTimerWithTimeInterval: 10
+        
+        localTimer = [NSTimer scheduledTimerWithTimeInterval: syncTime
                                                       target: self
                                                     selector: @selector(startTrackingForLocalDatabase)
                                                     userInfo: nil
                                                      repeats: YES];
-    }
+        
+         }
+}
+-(int)fetchDistanceBetweenTwoLocations {
+
+    CLLocation *source = [[CLLocation alloc] initWithLatitude:[oldTrackingLatitude floatValue] longitude:[oldTrackingLongitude floatValue]];
+    CLLocation *destination = [[CLLocation alloc] initWithLatitude:[trackingLatitude floatValue] longitude:[trackingLongitude floatValue]];
+    
+     int distanceFromCurrentLocation = [source distanceFromLocation:destination];
+    
+    NSLog(@"distance %d",distanceFromCurrentLocation);
+    return distanceFromCurrentLocation;
 }
 //Sop location tracking
 - (void)stopTrack {
@@ -164,18 +180,30 @@
 //Save data in local database
 - (void)startTrackingForLocalDatabase
 {
-    if ((!([trackingLongitude length] == 0 || [trackingLatitude length] == 0) &&[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"] != nil) && ([trackingLongitude floatValue]!=0.0 && [trackingLatitude floatValue]!=0.0)) {
+    int distance = [self fetchDistanceBetweenTwoLocations];
+    if (distance > minDist) {
         
-        NSArray * DataBaseArray = [[NSArray alloc]initWithObjects:@"1",[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"],[NSNumber numberWithDouble:[trackingLatitude doubleValue]],[NSNumber numberWithDouble:[trackingLongitude doubleValue]],@"",@"",trackingDate,trackingDate,nil];
+        oldTrackingLatitude = trackingLatitude;
+        oldTrackingLongitude = trackingLongitude;
         
-        NSString *temp=[NSString stringWithFormat:@"INSERT INTO LocationTracking values(?,?,?,?,?,?,?,?)"];
-        [MyDatabase insertIntoDatabase:[temp UTF8String] tempArray:[NSArray arrayWithArray:DataBaseArray]];
-        
+        if ((!([trackingLongitude length] == 0 || [trackingLatitude length] == 0) &&[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"] != nil) && ([trackingLongitude floatValue]!=0.0 && [trackingLatitude floatValue]!=0.0)) {
+            
+            NSArray * DataBaseArray = [[NSArray alloc]initWithObjects:@"1",[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"],[NSNumber numberWithDouble:[trackingLatitude doubleValue]],[NSNumber numberWithDouble:[trackingLongitude doubleValue]],@"",@"",trackingDate,trackingDate,nil];
+            
+            NSString *temp=[NSString stringWithFormat:@"INSERT INTO LocationTracking values(?,?,?,?,?,?,?,?)"];
+            [MyDatabase insertIntoDatabase:[temp UTF8String] tempArray:[NSArray arrayWithArray:DataBaseArray]];
+            
+        }
+        else
+        {
+        }
+
     }
-    else
-    {
+    else {
+        NSLog(@"set distance is minimum then travelled distance");
     }
-}
+
+ }
 
 #pragma mark - end
 #pragma mark - Google autocomplete API

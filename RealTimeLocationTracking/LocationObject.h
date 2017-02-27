@@ -28,6 +28,8 @@
     NSString *userAddress;
     NSTimer *localTimer;
     NSString *trackingLatitude, *trackingLongitude,*trackingDate;
+    NSString *oldTrackingLatitude, *oldTrackingLongitude;
+    int minDist;
 }
 
 //Autocomplete
@@ -48,7 +50,7 @@
 -(void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate isDirectionScreen:(BOOL)isDirectionScreen;
 
 //Background location tracking
-- (void)startTrack;
+- (void)startTrack:(int)syncTime dist:(int)dist;
 - (void)stopTrack;
 
 

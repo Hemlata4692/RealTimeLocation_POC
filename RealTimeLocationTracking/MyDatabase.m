@@ -72,6 +72,8 @@ static sqlite3 *locationTrackingDatabase = nil;
             else
             {
                 sqlite3_bind_text(dataRows, x+1, [[tempArray objectAtIndex:x] UTF8String],-1,SQLITE_TRANSIENT);
+                NSLog(@"this is date n time  %@",[tempArray objectAtIndex:x]);
+
             }
         }
         if (SQLITE_DONE!=sqlite3_step(dataRows))

@@ -20,6 +20,15 @@
 #define myDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #define googleAPIKey @"AIzaSyBnoZWo3Ah8yQLZmRM38TPOUpj00TcMLi4"
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
+//Set map types
+#define hybridMap kGMSTypeHybrid
+#define none kGMSTypeNone
+#define normapMap kGMSTypeNormal
+#define terrainMap kGMSTypeTerrain
+#define satelliteMap kGMSTypeSatellite
+
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 

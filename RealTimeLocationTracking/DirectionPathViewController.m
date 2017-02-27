@@ -59,8 +59,8 @@
     sourceLocation.longitude = [[locationData objectForKey:@"longitude"] doubleValue];
     NSString *address = [locationData objectForKey:@"locationAddress"];
     _mapView.camera = [GMSCameraPosition cameraWithLatitude:sourceLocation.latitude
-                                                        longitude:sourceLocation.longitude
-                                                             zoom:14];
+                                                  longitude:sourceLocation.longitude
+                                                       zoom:14];
     [self displayLocationOnMap:sourceLocation camera:_mapView.camera userAddress:address];
 }
 #pragma mark - end
@@ -158,19 +158,6 @@
     NSDictionary *arr=jsonResult[@"routes"][0][@"legs"];
     NSMutableArray *loc=[[NSMutableArray alloc]init];
     
-    loc=[[arr valueForKey:@"start_location"]valueForKey:@"lat"];
-    sourceLocation.latitude=[loc[0] doubleValue];
-    
-    loc=[[arr valueForKey:@"start_location"]valueForKey:@"lng"];
-    sourceLocation.longitude=[loc[0] doubleValue];
-    
-    loc=[[arr valueForKey:@"end_location"]valueForKey:@"lat"];
-    destinationLocation.latitude=[loc[0] doubleValue];
-    
-    loc=[[arr valueForKey:@"end_location"]valueForKey:@"lng"];
-    destinationLocation.longitude=[loc[0] doubleValue];
-    
-    
     NSString *dis,*dur;
     loc=[[arr valueForKey:@"distance"]valueForKey:@"text"];
     dis=loc[0];
@@ -186,23 +173,23 @@
     loc=[arr valueForKey:@"end_address"];
     destinationAddress=loc[0];
     
-    UIAlertView *av=[[UIAlertView alloc]initWithTitle:@"Route Info" message:[NSString stringWithFormat:@"Distance:%@ \nDuration:%@",dis,dur] delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
-    [av show];
+    [self showAlertTextMessage:[NSString stringWithFormat:@"Distance:%@ \nDuration:%@",dis,dur]];
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:sourceLocation.latitude  longitude:sourceLocation.longitude zoom:10];
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:sourceLocation.latitude  longitude:sourceLocation.longitude zoom:7];
     
     _mapView.camera = camera;
     _locationManager.marker.position = sourceLocation;
-    _locationManager.marker.title = @"Address";
+    _locationManager.marker.title = @"Source Address";
     _locationManager.marker.snippet = sourceAddress;
     _sourceLocationTextField.text=_locationManager.marker.snippet;
     _locationManager.marker.map= _mapView;
     
     _mapView.camera = camera;
     _locationManager.destinationMarker.position = destinationLocation;
-    _locationManager.destinationMarker.title = @"Address";
+    _locationManager.destinationMarker.title = @"Destination Address";
     _locationManager.destinationMarker.snippet = destinationAddress;
-    _sourceLocationTextField.text=_locationManager.destinationMarker.snippet;
+    _destinationLocationTextField.text=_locationManager.destinationMarker.snippet;
     _locationManager.destinationMarker.map= _mapView;
     
     GMSPolyline *singleLine = [GMSPolyline polylineWithPath:path];
@@ -229,6 +216,8 @@
                                    [alertController dismissViewControllerAnimated:YES completion:nil];
                                }];
     [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+
 }
 #pragma mark - end
 /*

@@ -31,7 +31,7 @@
     _googleMapView.delegate = _googleMapView;
     
     //Set map view type
-    //    _googleMapView.mapType=kGMSTypeHybrid;
+    //        _googleMapView.mapType=kGMSTypeSatellite;
     
     //Fetch current location
     [self fetchCurrentLocation];
@@ -111,7 +111,8 @@
     else {
         _trackingButton.selected = YES;
         [_trackingButton setTitle:@"Stop" forState:UIControlStateNormal];
-        [_locationManager startTrack];
+        [_locationManager startTrack:10 dist:20];
+
     }
     
 }
@@ -123,7 +124,7 @@
     UIStoryboard * storyboard=storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SelectPlaceViewController *pushView =[storyboard instantiateViewControllerWithIdentifier:@"SelectPlaceViewController"];
     pushView.isDirectionView = false;
-     pushView.MapViewObj=self;
+    pushView.MapViewObj=self;
     [self.navigationController pushViewController:pushView animated:YES];
     
 }
