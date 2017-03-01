@@ -12,17 +12,10 @@
 
 @import GoogleMaps;
 
-@interface AppDelegate ()<CLLocationManagerDelegate>
-{
+@interface AppDelegate ()<CLLocationManagerDelegate> {
 
     UIImageView *spinnerBackground;
     UIView *loaderView;
-    CLLocationManager *locationManager;
-    NSTimer *remoteTimer, *localTimer;
-    bool isTracking;
-    NSString *trackingLatitude, *trackingLongitude,*trackingDate;
-    NSString *oldTrackingLatitude, *oldTrackingLongitude;
-    NSTimer *backgroundTimerForDatabase, *backgroundTimerForService;
 }
 @property (nonatomic, strong) MMMaterialDesignSpinner *spinnerView;
 @property (nonatomic, strong) UILabel *loaderLabel;
@@ -60,6 +53,7 @@
     [self.spinnerView stopAnimating];
 }
 #pragma mark - end
+
 #pragma mark - App life cycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -67,9 +61,6 @@
     
     //Google API key(monika@ranosys.com)
     [GMSServices provideAPIKey:googleAPIKey];
-    
-    oldTrackingLongitude = @"";
-    oldTrackingLatitude = @"";
     
     [UserDefaultManager setValue:@"1" key:@"userId"];
     

@@ -30,7 +30,28 @@
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MapViewController *nextView =[storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
     [self.navigationController pushViewController:nextView animated:YES];
-
+    
+}
+- (IBAction)fetchRecords:(id)sender {
+    
+    NSMutableArray *gpsInfo = [NSMutableArray new];
+    
+    NSString *query=[NSString stringWithFormat:@"SELECT * FROM LocationTracking "];
+    gpsInfo =[MyDatabase getDataFromLocationTable:[query UTF8String]];
+    
+    if (gpsInfo.count>0)
+    {
+//        [[CampaignService sharedManager] setGPSTrackDataService:gpsInfo success :^(id responseObject)
+//         {
+//             [MyDatabase deleteRecord:[@"delete from LocationTracking" UTF8String]];
+//         }
+//                                                        failure:^(NSError *error)
+//         {
+//             
+//         }];
+    }
+    
+    
 }
 
 /*

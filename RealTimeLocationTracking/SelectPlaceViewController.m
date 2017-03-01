@@ -36,10 +36,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark - end
-#pragma mark - Textfield delegate method
 
+#pragma mark - Textfield delegate method
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     //fetch result from entred location
@@ -71,10 +70,9 @@
     return YES;
     
 }
-
 #pragma mark - end
-#pragma mark - Table view delegate and datasource methods
 
+#pragma mark - Table view delegate and datasource methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //data fetched from autocomplete search
     return searchResultArray.count;
@@ -99,8 +97,8 @@
     [self fetchLatitudeLongitudeFromAddress:descriptionString];
     
 }
-
 #pragma mark - end
+
 #pragma mark - Fetch and display autocomplete results
 //Fetch location coordinate from address
 -(void) fetchLatitudeLongitudeFromAddress: (NSString *) descriptionString {

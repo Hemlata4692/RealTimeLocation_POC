@@ -145,11 +145,11 @@ static sqlite3 *locationTrackingDatabase = nil;
             {
                 NSMutableDictionary * dataDict = [NSMutableDictionary new];
                 
-                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,0)] forKey:@"user_id"];
-                
-                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,1)] forKey:@"car_id"];
-                
-                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,2)] forKey:@"campaign_id"];
+                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,0)] forKey:@"Id"];
+//
+                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,1)] forKey:@"userId"];
+//
+                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,2)] forKey:@"address"];
                 @try {
                     float lat = (float)sqlite3_column_double(statement, 3);
                     NSNumber *latitude =[NSNumber numberWithFloat:lat];
@@ -163,13 +163,13 @@ static sqlite3 *locationTrackingDatabase = nil;
                 }
                 
                 
-                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,5)] forKey:@"current_date_time"];
-                
-                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,6)] forKey:@"is_start_stop"];
-                
-                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,7)] forKey:@"campaign_car_id"];
-                
-                [dataDict setObject:[UserDefaultManager getValue:@"TestingTrackMethod"] forKey:@"tracking_method"];
+                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,5)] forKey:@"destinationAddress"];
+//
+                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,6)] forKey:@"createdAt"];
+//
+                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,7)] forKey:@"updatedAt"];
+//
+//                [dataDict setObject:[UserDefaultManager getValue:@"TestingTrackMethod"] forKey:@"tracking_method"];
                 
                 [array addObject:dataDict];
             }

@@ -121,8 +121,12 @@
 }
 - (IBAction)getDirectionAction:(id)sender {
     
+    [_sourceLocationTextField resignFirstResponder];
+    [_destinationLocationTextField resignFirstResponder];
+
     if([self performValidationsForGetDirectionPath]) {
         
+        [myDelegate showIndicator];
         [self getLatLongFromArray:_destinationLocationTextField.text];
     }
     
@@ -153,6 +157,8 @@
     
 }
 -(void)returnDirectionResults:(NSDictionary *)jsonResult {
+    
+    [myDelegate stopIndicator];
     
     GMSPath *path =[GMSPath pathFromEncodedPath:jsonResult[@"routes"][0][@"overview_polyline"][@"points"]];
     NSDictionary *arr=jsonResult[@"routes"][0][@"legs"];

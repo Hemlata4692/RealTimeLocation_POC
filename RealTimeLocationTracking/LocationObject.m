@@ -12,7 +12,6 @@
 @synthesize locationManager;
 
 #pragma mark - Initialization
-
 - (id)init
 {
     if (self = [super init]) {
@@ -31,6 +30,7 @@
 }
 
 #pragma mark - end
+
 #pragma mark - Location update delegates
 
 - (void)getLocationInfo {
@@ -71,10 +71,9 @@
     [manager stopUpdatingLocation];
     [myDelegate stopIndicator];
 }
-
 #pragma mark - end
-#pragma mark - Get address from coordinates
 
+#pragma mark - Get address from coordinates
 -(void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate isDirectionScreen:(BOOL)isDirectionScreen{
     [self getAddressFromLatLong:locationCoordinate.latitude longitude:locationCoordinate.longitude];
     [self parseDic:json];
@@ -134,6 +133,7 @@
     return status;
 }
 #pragma mark - end
+
 #pragma mark - Tracking methods
 //Start location tracking
 - (void)startTrack:(int)syncTime dist:(int)dist {
@@ -181,7 +181,7 @@
 - (void)startTrackingForLocalDatabase
 {
     int distance = [self fetchDistanceBetweenTwoLocations];
-    if (distance > minDist) {
+    if (distance >= minDist) {
         
         oldTrackingLatitude = trackingLatitude;
         oldTrackingLongitude = trackingLongitude;
@@ -204,10 +204,9 @@
     }
 
  }
-
 #pragma mark - end
-#pragma mark - Google autocomplete API
 
+#pragma mark - Google autocomplete API
 -(void) fetchAutocompleteResult: (NSString *) searchKey {
     NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=geocode&radius=%@&key=%@", [NSString stringWithFormat:@"%@",searchKey], [NSString stringWithFormat:@"%i",500],googleAPIKey];
     NSString* urlTextEscaped = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];

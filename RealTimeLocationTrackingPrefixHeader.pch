@@ -15,6 +15,7 @@
 #import "Internet.h"
 #import "LocationObject.h"
 #import "GoogleMapView.h"
+#import "MyDatabase.h"
 @import GoogleMaps;
 
 #define myDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])

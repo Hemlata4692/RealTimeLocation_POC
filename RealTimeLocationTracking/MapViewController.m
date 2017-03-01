@@ -111,7 +111,7 @@
     else {
         _trackingButton.selected = YES;
         [_trackingButton setTitle:@"Stop" forState:UIControlStateNormal];
-        [_locationManager startTrack:10 dist:20];
+        [_locationManager startTrack:10 dist:0];
 
     }
     
