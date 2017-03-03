@@ -34,6 +34,8 @@
 }
 - (IBAction)fetchRecords:(id)sender {
     
+//     [MyDatabase deleteRecord:[@"delete from LocationTracking" UTF8String]];
+    
     NSMutableArray *gpsInfo = [NSMutableArray new];
     
     NSString *query=[NSString stringWithFormat:@"SELECT * FROM LocationTracking "];
@@ -41,6 +43,40 @@
     
     if (gpsInfo.count>0)
     {
+        NSDictionary *dict = [NSDictionary new];
+        NSMutableArray *latArray = [NSMutableArray new];
+        NSMutableArray *longArray = [NSMutableArray new];
+
+        for (int i=0; i<gpsInfo.count; i++) {
+            
+            
+                     dict = [gpsInfo objectAtIndex:i];
+
+            latArray = [dict objectForKey:@"latitude"];
+            longArray = [dict objectForKey:@"longitude"];
+
+            NSString *pointString=[NSString stringWithFormat:@"%@,%@",[dict objectForKey:@"latitude"],[dict objectForKey:@"longitude"]];
+            
+            NSLog(@"points string: %@",pointString);
+            //    [self.points addObject:pointString];
+            //    GMSMutablePath *path = [GMSMutablePath path];
+            //    for (int i=0; i<self.points.count; i++)
+            //    {
+            //        NSArray *latlongArray = [[self.points   objectAtIndex:i]componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
+            //
+            //        [path addLatitude:[[latlongArray objectAtIndex:0] doubleValue] longitude:[[latlongArray objectAtIndex:1] doubleValue]];
+            //    }
+            //
+            //    if (self.points.count>2)
+            //    {
+            //        GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+            //        polyline.strokeColor = [UIColor blueColor];
+            //        polyline.strokeWidth = 5.f;
+            //        polyline.map = mapView_;
+            //        self.view = mapView_;
+            //    }
+        }
+        
 //        [[CampaignService sharedManager] setGPSTrackDataService:gpsInfo success :^(id responseObject)
 //         {
 //             [MyDatabase deleteRecord:[@"delete from LocationTracking" UTF8String]];
@@ -53,6 +89,28 @@
     
     
 }
+
+//- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+//    
+//    NSString *pointString=[NSString stringWithFormat:@"%f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude];
+//    [self.points addObject:pointString];
+//    GMSMutablePath *path = [GMSMutablePath path];
+//    for (int i=0; i<self.points.count; i++)
+//    {
+//        NSArray *latlongArray = [[self.points   objectAtIndex:i]componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@","]];
+//        
+//        [path addLatitude:[[latlongArray objectAtIndex:0] doubleValue] longitude:[[latlongArray objectAtIndex:1] doubleValue]];
+//    }
+//    
+//    if (self.points.count>2)
+//    {
+//        GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+//        polyline.strokeColor = [UIColor blueColor];
+//        polyline.strokeWidth = 5.f;
+//        polyline.map = mapView_;
+//        self.view = mapView_;
+//    }
+//}
 
 /*
  #pragma mark - Navigation

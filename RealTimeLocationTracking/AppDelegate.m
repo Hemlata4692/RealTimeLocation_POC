@@ -62,7 +62,7 @@
     //Google API key(monika@ranosys.com)
     [GMSServices provideAPIKey:googleAPIKey];
     
-    [UserDefaultManager setValue:@"1" key:@"userId"];
+    [UserDefaultManager setValue:@"3" key:@"userId"];
     
     //check if database exists or not.
     [MyDatabase checkDataBaseExistence];

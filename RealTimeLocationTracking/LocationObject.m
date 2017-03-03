@@ -47,20 +47,20 @@
         NSLog(@"lat%f - lon%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
         [locationManager stopUpdatingLocation];
         [self getAddressMethod:newLocation.coordinate isDirectionScreen:NO];
-       
-        
-        if (isBackgroundLocationStarted) {
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            NSLocale *locale = [[NSLocale alloc]
-                                initWithLocaleIdentifier:@"en_US"];
-            [dateFormatter setLocale:locale];
-            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            trackingDate = [dateFormatter stringFromDate:newLocation.timestamp];
-            trackingLatitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.latitude];
-            trackingLongitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.longitude];
-        }
-
     }
+    if (isBackgroundLocationStarted) {
+        isBackgroundLocationStarted= false;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSLocale *locale = [[NSLocale alloc]
+                            initWithLocaleIdentifier:@"en_US"];
+        [dateFormatter setLocale:locale];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        trackingDate = [dateFormatter stringFromDate:newLocation.timestamp];
+        NSLog(@"trackingDate: %@",trackingDate);
+        trackingLatitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.latitude];
+        trackingLongitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.longitude];
+    }
+    
     
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -78,12 +78,12 @@
     [self getAddressFromLatLong:locationCoordinate.latitude longitude:locationCoordinate.longitude];
     [self parseDic:json];
     
-    trackingLatitude = [NSString stringWithFormat:@"%lf",locationCoordinate.latitude];
-    trackingLongitude = [NSString stringWithFormat:@"%lf",locationCoordinate.longitude];
+    //    trackingLatitude = [NSString stringWithFormat:@"%lf",locationCoordinate.latitude];
+    //    trackingLongitude = [NSString stringWithFormat:@"%lf",locationCoordinate.longitude];
     [myDelegate stopIndicator];
     
     NSDictionary *locationDict = [NSDictionary new];
-    locationDict = @{@"latitude":trackingLatitude,@"longitude": trackingLongitude,@"locationAddress":userAddress};
+    locationDict = @{@"latitude":[NSString stringWithFormat:@"%lf",locationCoordinate.latitude],@"longitude": [NSString stringWithFormat:@"%lf",locationCoordinate.longitude],@"locationAddress":userAddress};
     
     if (isDirectionScreen) {
         [_delegate showPinOnLcation:locationDict];
@@ -139,14 +139,15 @@
 - (void)startTrack:(int)syncTime dist:(int)dist {
     
     minDist = dist;
-    isBackgroundLocationStarted = true;
+//    isBackgroundLocationStarted = true;
     if ([locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)]) {
         locationManager.allowsBackgroundLocationUpdates = YES;
     }
     locationManager.pausesLocationUpdatesAutomatically = NO;
     // Start location updates
-    isCurrentLocationUpdated= false;
+    isBackgroundLocationStarted= true;
     [locationManager startUpdatingLocation];
+
     if (![localTimer isValid]) {
         
         localTimer = [NSTimer scheduledTimerWithTimeInterval: syncTime
@@ -155,14 +156,14 @@
                                                     userInfo: nil
                                                      repeats: YES];
         
-         }
+    }
 }
 -(int)fetchDistanceBetweenTwoLocations {
-
+    
     CLLocation *source = [[CLLocation alloc] initWithLatitude:[oldTrackingLatitude floatValue] longitude:[oldTrackingLongitude floatValue]];
     CLLocation *destination = [[CLLocation alloc] initWithLatitude:[trackingLatitude floatValue] longitude:[trackingLongitude floatValue]];
     
-     int distanceFromCurrentLocation = [source distanceFromLocation:destination];
+    int distanceFromCurrentLocation = [source distanceFromLocation:destination];
     
     NSLog(@"distance %d",distanceFromCurrentLocation);
     return distanceFromCurrentLocation;
@@ -180,6 +181,8 @@
 //Save data in local database
 - (void)startTrackingForLocalDatabase
 {
+    isBackgroundLocationStarted = true;
+
     int distance = [self fetchDistanceBetweenTwoLocations];
     if (distance >= minDist) {
         
@@ -197,13 +200,13 @@
         else
         {
         }
-
+        
     }
     else {
         NSLog(@"set distance is minimum then travelled distance");
     }
-
- }
+    
+}
 #pragma mark - end
 
 #pragma mark - Google autocomplete API
@@ -284,5 +287,4 @@
     [_delegate returnDirectionResults:jsonDict];
 }
 #pragma mark - end
-
 @end

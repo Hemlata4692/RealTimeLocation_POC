@@ -31,4 +31,7 @@
     [_locationManager getAddressMethod:coordinate isDirectionScreen:NO];
 }
 #pragma mark - end
+
+
+
 @end

@@ -58,7 +58,7 @@ static sqlite3 *locationTrackingDatabase = nil;
             }
             if([[tempArray objectAtIndex:x] isKindOfClass:[NSNumber class]])
             {
-                if (x==3 || x==4)
+                if (x==2 || x==3)
                 {
                     sqlite3_bind_double(dataRows,x+1,[[tempArray objectAtIndex:x]doubleValue]);
                 }
@@ -149,20 +149,20 @@ static sqlite3 *locationTrackingDatabase = nil;
 //
                 [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,1)] forKey:@"userId"];
 //
-                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,2)] forKey:@"address"];
-                @try {
-                    float lat = (float)sqlite3_column_double(statement, 3);
+                             @try {
+                    float lat = (float)sqlite3_column_double(statement, 2);
                     NSNumber *latitude =[NSNumber numberWithFloat:lat];
                     [dataDict setObject:latitude  forKey:@"latitude"];
                     
-                    float lng = (float)sqlite3_column_double(statement, 4);
+                    float lng = (float)sqlite3_column_double(statement, 3);
                     NSNumber *longitude =[NSNumber numberWithFloat:lng];
                     [dataDict setObject:longitude forKey:@"longitude"];
                 } @catch (NSException *exception) {
 //                    NSLog(@"exception is %@",exception);
                 }
                 
-                
+                [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,4)] forKey:@"address"];
+
                 [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,5)] forKey:@"destinationAddress"];
 //
                 [dataDict setObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement,6)] forKey:@"createdAt"];
