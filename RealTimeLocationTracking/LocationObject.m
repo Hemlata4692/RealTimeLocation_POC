@@ -28,7 +28,6 @@
     }
     return self;
 }
-
 #pragma mark - end
 
 #pragma mark - Location update delegates
@@ -39,8 +38,23 @@
     // This is being called but not starting the locationManager
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
           fromLocation:(CLLocation *)oldLocation {
+    
+    if (isRealTimeLocationUpdated) {
+        
+        trackingLatitudeCL = [NSString stringWithFormat:@"%lf",newLocation.coordinate.latitude];
+        trackingLongitudeCL = [NSString stringWithFormat:@"%lf",newLocation.coordinate.longitude];
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSLocale *locale = [[NSLocale alloc]
+                            initWithLocaleIdentifier:@"en_US"];
+        [dateFormatter setLocale:locale];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+         NSString * date = [dateFormatter stringFromDate:newLocation.timestamp];
+        NSLog(@"current location tracking Date: %@",date);
+
+    }
     
     if (!isCurrentLocationUpdated) {
         isCurrentLocationUpdated = true;
@@ -48,6 +62,7 @@
         [locationManager stopUpdatingLocation];
         [self getAddressMethod:newLocation.coordinate isDirectionScreen:NO];
     }
+    
     if (isBackgroundLocationStarted) {
         isBackgroundLocationStarted= false;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -60,8 +75,6 @@
         trackingLatitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.latitude];
         trackingLongitude = [NSString stringWithFormat:@"%lf",newLocation.coordinate.longitude];
     }
-    
-    
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
@@ -74,12 +87,10 @@
 #pragma mark - end
 
 #pragma mark - Get address from coordinates
--(void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate isDirectionScreen:(BOOL)isDirectionScreen{
+- (void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate isDirectionScreen:(BOOL)isDirectionScreen {
+    
     [self getAddressFromLatLong:locationCoordinate.latitude longitude:locationCoordinate.longitude];
     [self parseDic:json];
-    
-    //    trackingLatitude = [NSString stringWithFormat:@"%lf",locationCoordinate.latitude];
-    //    trackingLongitude = [NSString stringWithFormat:@"%lf",locationCoordinate.longitude];
     [myDelegate stopIndicator];
     
     NSDictionary *locationDict = [NSDictionary new];
@@ -92,7 +103,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"newLocationAddress" object:nil userInfo:locationDict];
     }
 }
--(id) getAddressFromLatLong:(float)latitude longitude:(float)longitude {
+- (id)getAddressFromLatLong:(float)latitude longitude:(float)longitude {
     
     NSString *req = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=%f,%f&sensor=false", latitude,longitude];
     NSString *result = [NSString stringWithContentsOfURL:[NSURL URLWithString:req] encoding:NSUTF8StringEncoding error:NULL];
@@ -119,14 +130,14 @@
         return data;
     }
 }
--(NSString *) parseDic: (NSDictionary*)dataDic  {
+- (NSString *) parseDic: (NSDictionary*)dataDic  {
     
     NSString *status =[dataDic objectForKey:@"status"];
     if ([status isEqualToString:@"OK"]) {
         status = [[dataDic[@"results"] objectAtIndex:0] objectForKey:@"formatted_address"];
         userAddress = status;
     }
-    else{
+    else {
         userAddress = @"";
         status = @"please check your internet connection.";
     }
@@ -138,8 +149,8 @@
 //Start location tracking
 - (void)startTrack:(int)syncTime dist:(int)dist {
     
-    minDist = dist;
-//    isBackgroundLocationStarted = true;
+    minDistforDB = dist;
+    //    isBackgroundLocationStarted = true;
     if ([locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)]) {
         locationManager.allowsBackgroundLocationUpdates = YES;
     }
@@ -147,33 +158,33 @@
     // Start location updates
     isBackgroundLocationStarted= true;
     [locationManager startUpdatingLocation];
-
-    if (![localTimer isValid]) {
+    
+    if (![myDelegate.localTimer isValid]) {
         
-        localTimer = [NSTimer scheduledTimerWithTimeInterval: syncTime
+        myDelegate.localTimer = [NSTimer scheduledTimerWithTimeInterval: syncTime
                                                       target: self
                                                     selector: @selector(startTrackingForLocalDatabase)
                                                     userInfo: nil
                                                      repeats: YES];
-        
     }
 }
--(int)fetchDistanceBetweenTwoLocations {
+- (int)fetchDistanceBetweenTwoLocations:(NSString *)latitude longitude:(NSString *)longitude oldLatitude:(NSString *)oldLatitude oldLongitude:(NSString *)oldLongitude{
     
-    CLLocation *source = [[CLLocation alloc] initWithLatitude:[oldTrackingLatitude floatValue] longitude:[oldTrackingLongitude floatValue]];
-    CLLocation *destination = [[CLLocation alloc] initWithLatitude:[trackingLatitude floatValue] longitude:[trackingLongitude floatValue]];
+    CLLocation *source = [[CLLocation alloc] initWithLatitude:[oldLatitude floatValue] longitude:[oldLongitude floatValue]];
+    CLLocation *destination = [[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]];
     
     int distanceFromCurrentLocation = [source distanceFromLocation:destination];
     
     NSLog(@"distance %d",distanceFromCurrentLocation);
     return distanceFromCurrentLocation;
 }
-//Sop location tracking
+//Stop location tracking
 - (void)stopTrack {
+    
     // Stop location updates
     isBackgroundLocationStarted = false;
-    [localTimer invalidate];
-    localTimer = nil;
+    [myDelegate.localTimer invalidate];
+    myDelegate.localTimer = nil;
     trackingLatitude = @"";
     trackingLongitude = @"";
     [locationManager stopUpdatingLocation];
@@ -182,9 +193,8 @@
 - (void)startTrackingForLocalDatabase
 {
     isBackgroundLocationStarted = true;
-
-    int distance = [self fetchDistanceBetweenTwoLocations];
-    if (distance >= minDist) {
+    int distance = [self fetchDistanceBetweenTwoLocations:trackingLatitude longitude:trackingLongitude oldLatitude:oldTrackingLatitude oldLongitude:oldTrackingLongitude];
+    if (distance >= minDistforDB) {
         
         oldTrackingLatitude = trackingLatitude;
         oldTrackingLongitude = trackingLongitude;
@@ -197,12 +207,13 @@
             [MyDatabase insertIntoDatabase:[temp UTF8String] tempArray:[NSArray arrayWithArray:DataBaseArray]];
             
         }
-        else
-        {
+        else {
+            [myDelegate.localTimer invalidate];
+            myDelegate.localTimer = nil;
         }
-        
     }
     else {
+        
         NSLog(@"set distance is minimum then travelled distance");
     }
     
@@ -210,7 +221,8 @@
 #pragma mark - end
 
 #pragma mark - Google autocomplete API
--(void) fetchAutocompleteResult: (NSString *) searchKey {
+- (void) fetchAutocompleteResult: (NSString *) searchKey {
+    
     NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=geocode&radius=%@&key=%@", [NSString stringWithFormat:@"%@",searchKey], [NSString stringWithFormat:@"%i",500],googleAPIKey];
     NSString* urlTextEscaped = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     //Formulate the string as URL object.
@@ -233,7 +245,7 @@
 #pragma mark - end
 
 #pragma mark - Fetch location coordinate from address
--(void)fetchLatitudeLongitudeFromAddress:(NSString *)addressString {
+- (void)fetchLatitudeLongitudeFromAddress:(NSString *)addressString {
     
     NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&sensor=false", [NSString stringWithFormat:@"%@",addressString]];
     NSString* urlTextEscaped = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
@@ -260,7 +272,7 @@
 #pragma mark - end
 
 #pragma mark - Fetch direction path
--(void)fetchDirectionPathResults:(CLLocationCoordinate2D)sourceLocation destinationLocation:(CLLocationCoordinate2D)destinationLocation {
+- (void)fetchDirectionPathResults:(CLLocationCoordinate2D)sourceLocation destinationLocation:(CLLocationCoordinate2D)destinationLocation {
     
     NSString *url = [NSString stringWithFormat:
                      @"%@?origin=%f,%f&destination=%f,%f&sensor=true&key=%@",
@@ -287,4 +299,62 @@
     [_delegate returnDirectionResults:jsonDict];
 }
 #pragma mark - end
+
+#pragma mark - Real time tracking
+- (void)startRealTimeTracking:(int)syncTime dist:(int)dist {
+    
+        minDistforCL = dist;
+    if ([locationManager respondsToSelector:@selector(setAllowsBackgroundLocationUpdates:)]) {
+        locationManager.allowsBackgroundLocationUpdates = YES;
+    }
+    locationManager.pausesLocationUpdatesAutomatically = NO;
+    // Start location updates
+    isBackgroundLocationStarted= false;
+    isCurrentLocationUpdated = true;
+    isRealTimeLocationUpdated = true;
+    [locationManager startUpdatingLocation];
+    
+    if (![myDelegate.currentLocationTrackTimer isValid]) {
+        
+        myDelegate.currentLocationTrackTimer = [NSTimer scheduledTimerWithTimeInterval: syncTime
+                                                                     target: self
+                                                                   selector: @selector(usersCurrentLocation)
+                                                                   userInfo: nil
+                                                                    repeats: YES];
+    }
+}
+- (void)usersCurrentLocation {
+    
+    int distance = [self fetchDistanceBetweenTwoLocations:trackingLatitudeCL longitude:trackingLongitudeCL oldLatitude:oldTrackingLatitudeCL oldLongitude:oldTrackingLongitudeCL];
+    if (distance >= minDistforCL) {
+        
+        oldTrackingLatitudeCL = trackingLatitudeCL;
+        oldTrackingLongitudeCL = trackingLongitudeCL;
+        
+        if ((!([trackingLongitudeCL length] == 0 || [trackingLatitudeCL length] == 0) &&[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"] != nil) && ([trackingLongitudeCL floatValue]!=0.0 && [trackingLatitudeCL floatValue]!=0.0)) {
+            
+            [_delegate fetchRealTimeLocation:[trackingLatitudeCL floatValue] longitude:[trackingLongitudeCL floatValue]];
+        }
+        else {
+            [myDelegate.localTimer invalidate];
+            myDelegate.localTimer = nil;
+        }
+    }
+    else {
+        
+        NSLog(@"set distance is minimum then travelled distance");
+    }
+}
+#pragma mark - end
+
+#pragma mark - Stop rea time tracking
+- (void)stopRealTimeTracking {
+    
+    isRealTimeLocationUpdated = false;
+    [myDelegate.currentLocationTrackTimer invalidate];
+    myDelegate.currentLocationTrackTimer = nil;
+    [locationManager stopUpdatingLocation];
+}
+#pragma mark - end
+
 @end

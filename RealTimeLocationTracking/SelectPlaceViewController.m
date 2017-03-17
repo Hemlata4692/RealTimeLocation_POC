@@ -101,14 +101,14 @@
 
 #pragma mark - Fetch and display autocomplete results
 //Fetch location coordinate from address
--(void) fetchLatitudeLongitudeFromAddress: (NSString *) descriptionString {
+- (void) fetchLatitudeLongitudeFromAddress: (NSString *) descriptionString {
     
     _locationManager.delegate = self;
     [_locationManager fetchLatitudeLongitudeFromAddress:descriptionString];
 }
 
 //Fetch results from autocomplete API
--(void) fetchAutocompleteResult: (NSString *) searchKey {
+- (void) fetchAutocompleteResult: (NSString *) searchKey {
     
     _locationManager.delegate = self;
     [_locationManager fetchAutocompleteResult:searchKey];
@@ -116,7 +116,7 @@
 }
 
 //Display autocomplete results
--(void)returnAutocompleteSearchResults:(NSDictionary *)jsonResult isSearchValue:(BOOL)isSearchValue {
+- (void)returnAutocompleteSearchResults:(NSDictionary *)jsonResult isSearchValue:(BOOL)isSearchValue {
     
     if (isSearchValue) {
         searchResultArray = [jsonResult objectForKey:@"predictions"];

@@ -62,10 +62,14 @@
     //Google API key(monika@ranosys.com)
     [GMSServices provideAPIKey:googleAPIKey];
     
-    [UserDefaultManager setValue:@"3" key:@"userId"];
+    [UserDefaultManager setValue:@"1" key:@"userId"];
     
     //check if database exists or not.
     [MyDatabase checkDataBaseExistence];
+    
+    //Background tracking
+    [UserDefaultManager setValue:@"false" key:@"isTrackingStart"];
+    [UserDefaultManager setValue:@"false" key:@"isRealTimeTrackingStart"];
 
     return YES;
 }
@@ -74,6 +78,7 @@
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    
 }
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.

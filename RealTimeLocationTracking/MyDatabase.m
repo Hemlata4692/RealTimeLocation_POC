@@ -16,8 +16,9 @@ static sqlite3 *locationTrackingDatabase = nil;
 {
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)	;
     NSString *documentDir = [paths objectAtIndex:0];
-//    NSLog(@"dbpath is %@",[documentDir stringByAppendingPathComponent:databaseName]);
-    return [documentDir stringByAppendingPathComponent:databaseName];
+    documentDir = [documentDir stringByAppendingPathComponent:databaseName];
+    NSLog(@"documentDir path: %@",documentDir);
+    return documentDir;
 }
 
 + (void)checkDataBaseExistence

@@ -40,7 +40,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPinOnLcation:) name:@"newLocationAddress" object:nil];
     
 }
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
@@ -54,9 +54,22 @@
     
     // hide navigation bar
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
+    //Background tracking
+    if ([UserDefaultManager getValue:@"isTrackingStart"] == NULL || [[UserDefaultManager getValue:@"isTrackingStart"] isEqualToString:@"false"])
+    {
+        _trackingButton.selected = NO;
+        [_trackingButton setTitle:@"Start" forState:UIControlStateNormal];
+    }
+    else
+    {
+        _trackingButton.selected = YES;
+        [_trackingButton setTitle:@"Stop" forState:UIControlStateNormal];
+    }
+
 }
 
--(void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_searchTextField endEditing:YES];
 }
@@ -81,7 +94,7 @@
 #pragma mark - end
 
 #pragma mark - Show location on marker
--(void)fetchCurrentLocation {
+- (void)fetchCurrentLocation {
     [_locationManager getLocationInfo];
 }
 - (void)displayLocationOnMap:(CLLocationCoordinate2D)locationCoordinate camera:(GMSCameraPosition *)camera userAddress:(NSString *)userAddress {
@@ -102,24 +115,27 @@
 #pragma mark - Start background location updates
 - (IBAction)startLocationTrackingAction:(id)sender {
     
-    if (_trackingButton.selected)
-    {
-        [_locationManager stopTrack];
+    if (_trackingButton.selected) {
+        
         _trackingButton.selected = NO;
         [_trackingButton setTitle:@"Start" forState:UIControlStateNormal];
+        [UserDefaultManager setValue:@"false" key:@"isTrackingStart"];
+        [_locationManager stopTrack];
+
     }
     else {
+        
         _trackingButton.selected = YES;
         [_trackingButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [UserDefaultManager setValue:@"true" key:@"isTrackingStart"];
         [_locationManager startTrack:10 dist:0];
 
     }
-    
 }
 #pragma mark - end
 
 #pragma mark - Textfield delegates
--(void)textFieldDidBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     
     UIStoryboard * storyboard=storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SelectPlaceViewController *pushView =[storyboard instantiateViewControllerWithIdentifier:@"SelectPlaceViewController"];
@@ -128,7 +144,7 @@
     [self.navigationController pushViewController:pushView animated:YES];
     
 }
--(void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

@@ -11,11 +11,19 @@
 @import GoogleMaps;
 @protocol getAutocompleteResultDelegate <NSObject>
 @optional
--(void)returnAutocompleteSearchResults:(NSDictionary *)jsonResult isSearchValue:(BOOL)isSearchValue;
+
+//Fetch autocomplete results
+- (void)returnAutocompleteSearchResults:(NSDictionary *)jsonResult isSearchValue:(BOOL)isSearchValue;
+
 //Fetch direction API result
--(void)returnDirectionResults:(NSDictionary *)jsonResult;
+- (void)returnDirectionResults:(NSDictionary *)jsonResult;
+
 //Fetch address for direction path screen
 - (void)showPinOnLcation:(NSDictionary *)locationData ;
+
+//Real time tracking
+- (void)fetchRealTimeLocation:(float)latitude longitude:(float)longitude;
+
 @end
 
 @interface LocationObject : NSObject<CLLocationManagerDelegate> {
@@ -26,20 +34,25 @@
     BOOL isCurrentLocationUpdated;
     BOOL isBackgroundLocationStarted;
     NSString *userAddress;
-    NSTimer *localTimer;
     NSString *trackingLatitude, *trackingLongitude,*trackingDate;
     NSString *oldTrackingLatitude, *oldTrackingLongitude;
-    int minDist;
+    int minDistforDB;
+    
+    //Current location
+    BOOL isRealTimeLocationUpdated;
+    int minDistforCL;
+    NSString *trackingLatitudeCL, *trackingLongitudeCL;
+    NSString *oldTrackingLatitudeCL, *oldTrackingLongitudeCL;
 }
 
 //Autocomplete
--(void) fetchAutocompleteResult: (NSString *) searchKey;
+- (void) fetchAutocompleteResult: (NSString *) searchKey;
 @property (nonatomic,strong) id <getAutocompleteResultDelegate>delegate;
--(void) fetchLatitudeLongitudeFromAddress: (NSString *) descriptionString;
+- (void) fetchLatitudeLongitudeFromAddress: (NSString *) descriptionString;
 
 //Direction API
 @property (nonatomic, strong) GMSMarker *destinationMarker;
--(void)fetchDirectionPathResults:(CLLocationCoordinate2D)sourceLocation destinationLocation:(CLLocationCoordinate2D)destinationLocation;
+- (void)fetchDirectionPathResults:(CLLocationCoordinate2D)sourceLocation destinationLocation:(CLLocationCoordinate2D)destinationLocation;
 
 //location manager
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -47,11 +60,14 @@
 
 //To fetch current location
 - (void)getLocationInfo;
--(void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate isDirectionScreen:(BOOL)isDirectionScreen;
+- (void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate isDirectionScreen:(BOOL)isDirectionScreen;
 
 //Background location tracking
 - (void)startTrack:(int)syncTime dist:(int)dist;
 - (void)stopTrack;
 
+//Real time tracking path
+- (void)startRealTimeTracking:(int)syncTime dist:(int)dist;
+- (void)stopRealTimeTracking;
 
 @end

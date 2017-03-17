@@ -26,7 +26,7 @@
     [super viewDidLoad];
     _locationManager = [[LocationObject alloc]init];
 }
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     //Display instant search results
@@ -41,7 +41,7 @@
     // hide navigation bar
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
--(void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [_sourceLocationTextField endEditing:YES];
 }
@@ -80,7 +80,7 @@
 #pragma mark - end
 
 #pragma mark - Textfield delegates
--(void)textFieldDidBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     
     if(textField == _sourceLocationTextField) {
         
@@ -95,7 +95,7 @@
     }
     
 }
--(void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -131,14 +131,14 @@
     }
     
 }
--(void)getLatLongFromArray:(NSString *)addressString {
+- (void)getLatLongFromArray:(NSString *)addressString {
     
     _locationManager.delegate = self;
     [_locationManager fetchLatitudeLongitudeFromAddress:addressString];
     
 }
 //Display destination location results
--(void)returnAutocompleteSearchResults:(NSDictionary *)jsonResult isSearchValue:(BOOL)isSearchValue {
+- (void)returnAutocompleteSearchResults:(NSDictionary *)jsonResult isSearchValue:(BOOL)isSearchValue {
     
     NSArray *locationArray = [NSArray new];
     locationArray = [jsonResult objectForKey:@"results"];
@@ -156,7 +156,27 @@
     [_locationManager fetchDirectionPathResults:sourceLocation destinationLocation:destinationLocation];
     
 }
--(void)returnDirectionResults:(NSDictionary *)jsonResult {
+//- (void)mapView:(GMSMapView *)mapView didTapOverlay:(GMSOverlay *)overlay{
+//    
+//    NSString *path = overlay.title;
+//    
+//    //Finding componentpaths of string
+//    NSArray *pathparts = [path pathComponents];
+//    NSString *lat = [pathparts objectAtIndex:0];
+//    NSString *lng = [pathparts objectAtIndex:1];
+//    NSString *linkID = [pathparts objectAtIndex:2];
+//    
+//    //Here we are building a marker to place near the users tap location on the polyline.
+//    GMSMarker *marker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake([lat doubleValue],[lng doubleValue])];
+//    marker.title = overlay.title;
+//    marker.snippet = @"ROUTE DATA";
+//    marker.map = _mapView;
+//    
+//    //This will popup a marker window
+//    [_mapView setSelectedMarker:marker];
+//}
+
+- (void)returnDirectionResults:(NSDictionary *)jsonResult {
     
     [myDelegate stopIndicator];
     
@@ -207,7 +227,7 @@
 #pragma mark - end
 
 #pragma mark - Show alert
--(void)showAlertTextMessage:(NSString *)alertMessage {
+- (void)showAlertTextMessage:(NSString *)alertMessage {
     
     UIAlertController *alertController = [UIAlertController
                                           alertControllerWithTitle:@"Alert"

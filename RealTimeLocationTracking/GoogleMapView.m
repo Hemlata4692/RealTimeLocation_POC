@@ -31,7 +31,28 @@
     [_locationManager getAddressMethod:coordinate isDirectionScreen:NO];
 }
 #pragma mark - end
+- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
+}
 
-
-
+- (void)mapView:(GMSMapView *)mapView didTapOverlay:(GMSOverlay *)overlay{
+    
+    NSString *path = overlay.title;
+    
+    //Finding componentpaths of string
+    NSArray *pathparts = [path pathComponents];
+    NSString *lat = [pathparts objectAtIndex:0];
+    NSString *lng = [pathparts objectAtIndex:1];
+    NSString *linkID = [pathparts objectAtIndex:2];
+    
+    //Here we are building a marker to place near the users tap location on the polyline.
+    GMSMarker *marker = [GMSMarker markerWithPosition:CLLocationCoordinate2DMake([lat doubleValue],[lng doubleValue])];
+    marker.title = overlay.title;
+    marker.snippet = @"ROUTE DATA";
+    marker.map = self;
+    
+    //This will popup a marker window
+//    [self.googleMapView setSelectedMarker:marker];
+}
 @end
