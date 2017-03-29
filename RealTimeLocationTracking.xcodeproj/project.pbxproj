@@ -8,15 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		3C6842C0C739F798BC8E6145 /* libPods-RealTimeLocationTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 098DEAB2FADCB3544492EB9E /* libPods-RealTimeLocationTracking.a */; };
+		5D5A0AB31E83F127009DBCD3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A0AB21E83F127009DBCD3 /* LoginViewController.m */; };
 		5D80E38C1E56F3D900041DAF /* LocationTracking.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5D80E38B1E56F3D900041DAF /* LocationTracking.sqlite */; };
 		5D8123181E5563A90094DDB3 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8123151E5563A90094DDB3 /* SelectPlaceViewController.m */; };
 		5D8123191E5563A90094DDB3 /* SelectPlacesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8123171E5563A90094DDB3 /* SelectPlacesViewCell.m */; };
+		5D8884F31E84F7A30094B92A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8884F21E84F7A30094B92A /* BSKeyboardControls.m */; };
 		5D90B7F21E54583500F14797 /* Internet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D90B7F11E54583500F14797 /* Internet.m */; };
 		5D90B7F51E5459E200F14797 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D90B7F41E5459E200F14797 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5D9147C21E5D9D6F00B24F17 /* StreetMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9147C11E5D9D6F00B24F17 /* StreetMapView.m */; };
 		5D9147C61E5DAB3700B24F17 /* DirectionPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9147C51E5DAB3700B24F17 /* DirectionPathViewController.m */; };
 		5D958B301E5EE5E700587104 /* UITextField+Validations.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D958B2F1E5EE5E700587104 /* UITextField+Validations.m */; };
 		5D9A40E11E5C00AD003F5517 /* GoogleMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9A40E01E5C00AD003F5517 /* GoogleMapView.m */; };
+		5D9D287C1E8A2F95007F03E4 /* Webservice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D287B1E8A2F95007F03E4 /* Webservice.m */; };
+		5D9D28811E8A3B8C007F03E4 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D28801E8A3B8C007F03E4 /* UserService.m */; };
 		5D9E47D81E5AB64F006949A9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E47D71E5AB64F006949A9 /* MapViewController.m */; };
 		5D9E47DB1E5AFDB2006949A9 /* LocationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9E47DA1E5AFDB2006949A9 /* LocationObject.m */; };
 		5DA1FDE71E52DED10076B880 /* UserDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1FDE61E52DED10076B880 /* UserDefaultManager.m */; };
@@ -37,11 +41,15 @@
 /* Begin PBXFileReference section */
 		07BE8AC3B1643291B4F2075E /* Pods-RealTimeLocationTracking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealTimeLocationTracking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealTimeLocationTracking/Pods-RealTimeLocationTracking.debug.xcconfig"; sourceTree = "<group>"; };
 		098DEAB2FADCB3544492EB9E /* libPods-RealTimeLocationTracking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RealTimeLocationTracking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D5A0AB11E83F127009DBCD3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		5D5A0AB21E83F127009DBCD3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		5D80E38B1E56F3D900041DAF /* LocationTracking.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LocationTracking.sqlite; sourceTree = "<group>"; };
 		5D8123141E5563A90094DDB3 /* SelectPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlaceViewController.h; sourceTree = "<group>"; };
 		5D8123151E5563A90094DDB3 /* SelectPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlaceViewController.m; sourceTree = "<group>"; };
 		5D8123161E5563A90094DDB3 /* SelectPlacesViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlacesViewCell.h; sourceTree = "<group>"; };
 		5D8123171E5563A90094DDB3 /* SelectPlacesViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlacesViewCell.m; sourceTree = "<group>"; };
+		5D8884F11E84F7A30094B92A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
+		5D8884F21E84F7A30094B92A /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		5D90B7F01E54583500F14797 /* Internet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internet.h; sourceTree = "<group>"; };
 		5D90B7F11E54583500F14797 /* Internet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Internet.m; sourceTree = "<group>"; };
 		5D90B7F31E5459E200F14797 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -54,6 +62,10 @@
 		5D958B2F1E5EE5E700587104 /* UITextField+Validations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Validations.m"; sourceTree = "<group>"; };
 		5D9A40DF1E5C00AD003F5517 /* GoogleMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapView.h; sourceTree = "<group>"; };
 		5D9A40E01E5C00AD003F5517 /* GoogleMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapView.m; sourceTree = "<group>"; };
+		5D9D287A1E8A2F95007F03E4 /* Webservice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Webservice.h; sourceTree = "<group>"; };
+		5D9D287B1E8A2F95007F03E4 /* Webservice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Webservice.m; sourceTree = "<group>"; };
+		5D9D287F1E8A3B8C007F03E4 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
+		5D9D28801E8A3B8C007F03E4 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
 		5D9E47D61E5AB64F006949A9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		5D9E47D71E5AB64F006949A9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		5D9E47D91E5AFDB2006949A9 /* LocationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationObject.h; sourceTree = "<group>"; };
@@ -98,6 +110,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D5A0AB01E83F105009DBCD3 /* UserModule */ = {
+			isa = PBXGroup;
+			children = (
+				5D5A0AB11E83F127009DBCD3 /* LoginViewController.h */,
+				5D5A0AB21E83F127009DBCD3 /* LoginViewController.m */,
+			);
+			name = UserModule;
+			sourceTree = "<group>";
+		};
 		5D81231B1E5563B50094DDB3 /* SelectPlacesViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +135,15 @@
 				5D8123151E5563A90094DDB3 /* SelectPlaceViewController.m */,
 			);
 			name = SelectPlacesView;
+			sourceTree = "<group>";
+		};
+		5D8884F01E84F7950094B92A /* BSKeyboardControls */ = {
+			isa = PBXGroup;
+			children = (
+				5D8884F11E84F7A30094B92A /* BSKeyboardControls.h */,
+				5D8884F21E84F7A30094B92A /* BSKeyboardControls.m */,
+			);
+			name = BSKeyboardControls;
 			sourceTree = "<group>";
 		};
 		5D90B7EF1E54582C00F14797 /* Reachability */ = {
@@ -172,6 +202,24 @@
 			name = ValidationCategory;
 			sourceTree = "<group>";
 		};
+		5D9D287D1E8A3B55007F03E4 /* GlobalService */ = {
+			isa = PBXGroup;
+			children = (
+				5D9D287A1E8A2F95007F03E4 /* Webservice.h */,
+				5D9D287B1E8A2F95007F03E4 /* Webservice.m */,
+			);
+			name = GlobalService;
+			sourceTree = "<group>";
+		};
+		5D9D287E1E8A3B67007F03E4 /* UserService */ = {
+			isa = PBXGroup;
+			children = (
+				5D9D287F1E8A3B8C007F03E4 /* UserService.h */,
+				5D9D28801E8A3B8C007F03E4 /* UserService.m */,
+			);
+			name = UserService;
+			sourceTree = "<group>";
+		};
 		5D9E47D21E5AA670006949A9 /* LocationManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +267,7 @@
 		5DA1FDE31E52DD170076B880 /* SupportingClasses */ = {
 			isa = PBXGroup;
 			children = (
+				5D8884F01E84F7950094B92A /* BSKeyboardControls */,
 				5D958B311E5EE5F300587104 /* ValidationCategory */,
 				5D9E47D21E5AA670006949A9 /* LocationManager */,
 				5D90B7EF1E54582C00F14797 /* Reachability */,
@@ -266,6 +315,8 @@
 		5DA1FDEE1E52DF1C0076B880 /* Webservice */ = {
 			isa = PBXGroup;
 			children = (
+				5D9D287E1E8A3B67007F03E4 /* UserService */,
+				5D9D287D1E8A3B55007F03E4 /* GlobalService */,
 			);
 			name = Webservice;
 			sourceTree = "<group>";
@@ -281,6 +332,7 @@
 		5DA1FDF01E52E1D10076B880 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5D5A0AB01E83F105009DBCD3 /* UserModule */,
 				5DA1FDFA1E52E7BE0076B880 /* DemoModule */,
 				5DA1FDF91E52E65C0076B880 /* InstantSearchModule */,
 			);
@@ -529,14 +581,18 @@
 				5D90B7F51E5459E200F14797 /* Reachability.m in Sources */,
 				5DA1FDF81E52E2780076B880 /* MMMaterialDesignSpinner.m in Sources */,
 				5D9A40E11E5C00AD003F5517 /* GoogleMapView.m in Sources */,
+				5D9D287C1E8A2F95007F03E4 /* Webservice.m in Sources */,
 				5D9147C21E5D9D6F00B24F17 /* StreetMapView.m in Sources */,
 				5D958B301E5EE5E700587104 /* UITextField+Validations.m in Sources */,
 				5D8123191E5563A90094DDB3 /* SelectPlacesViewCell.m in Sources */,
 				5DA1FDE71E52DED10076B880 /* UserDefaultManager.m in Sources */,
 				5DA1FE0D1E531D500076B880 /* DemoViewController.m in Sources */,
 				B782B71B1E52B9F400BA08B2 /* main.m in Sources */,
+				5D5A0AB31E83F127009DBCD3 /* LoginViewController.m in Sources */,
 				5D9E47DB1E5AFDB2006949A9 /* LocationObject.m in Sources */,
+				5D8884F31E84F7A30094B92A /* BSKeyboardControls.m in Sources */,
 				5D9E47D81E5AB64F006949A9 /* MapViewController.m in Sources */,
+				5D9D28811E8A3B8C007F03E4 /* UserService.m in Sources */,
 				5DB9DE3E1E69215F009CBEDC /* RealTimeTrackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

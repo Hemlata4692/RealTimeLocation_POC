@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "MapViewController.h"
 #import "DirectionPathViewController.h"
+#import "LocationObject.h"
+
 @interface SelectPlaceViewController : UIViewController
-@property(strong, nonatomic) MapViewController *MapViewObj;
-@property(strong, nonatomic) DirectionPathViewController *DirectionViewObj;
+@property(strong, nonatomic) MapViewController *mapViewObj;
+@property(strong, nonatomic) DirectionPathViewController *directionViewObj;
 @property (nonatomic, strong) LocationObject *locationManager;
 @property BOOL isDirectionView;
 

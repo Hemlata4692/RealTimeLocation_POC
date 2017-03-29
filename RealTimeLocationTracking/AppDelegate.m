@@ -13,10 +13,10 @@
 @import GoogleMaps;
 
 @interface AppDelegate ()<CLLocationManagerDelegate> {
-
     UIImageView *spinnerBackground;
     UIView *loaderView;
 }
+
 @property (nonatomic, strong) MMMaterialDesignSpinner *spinnerView;
 @property (nonatomic, strong) UILabel *loaderLabel;
 @end
@@ -25,7 +25,6 @@
 
 #pragma mark - Global indicator view
 - (void)showIndicator {
-    
     spinnerBackground=[[UIImageView alloc]initWithFrame:CGRectMake(3, 3, 50, 50)];
     spinnerBackground.backgroundColor=[UIColor whiteColor];
     spinnerBackground.layer.cornerRadius=25.0f;
@@ -45,8 +44,7 @@
     [self.spinnerView startAnimating];
 }
 
-- (void)stopIndicator
-{
+- (void)stopIndicator {
     [loaderView removeFromSuperview];
     [self.spinnerView removeFromSuperview];
     [self.loaderLabel removeFromSuperview];
@@ -55,37 +53,34 @@
 #pragma mark - end
 
 #pragma mark - App life cycle
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
     //Google API key(monika@ranosys.com)
     [GMSServices provideAPIKey:googleAPIKey];
-    
     [UserDefaultManager setValue:@"1" key:@"userId"];
-    
     //check if database exists or not.
     [MyDatabase checkDataBaseExistence];
-    
     //Background tracking
     [UserDefaultManager setValue:@"false" key:@"isTrackingStart"];
     [UserDefaultManager setValue:@"false" key:@"isRealTimeTrackingStart"];
-
     return YES;
 }
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
+
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    
 }
+
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
 }
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
+
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }

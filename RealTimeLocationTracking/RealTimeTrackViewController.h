@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RealTimeTrackViewController : UIViewController
+
 @property (nonatomic, strong) LocationObject *locationManager;
 
 @end

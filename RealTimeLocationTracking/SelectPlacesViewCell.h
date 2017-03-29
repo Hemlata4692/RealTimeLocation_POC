@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SelectPlacesViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *placeName;
 @property (weak, nonatomic) IBOutlet UILabel *placeAddress;
-
 - (void)displaySearchAutocompleteData:(NSDictionary*)placesDict rectSize:(CGSize)rectSize;
+
 @end

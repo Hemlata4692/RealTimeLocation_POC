@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 @import GoogleMaps;
-@protocol getAutocompleteResultDelegate <NSObject>
+@protocol GetAutocompleteResultDelegate <NSObject>
 @optional
 
 //Fetch autocomplete results
@@ -28,7 +28,7 @@
 
 @interface LocationObject : NSObject<CLLocationManagerDelegate> {
     
-    id <getAutocompleteResultDelegate> _delegate;
+    id <GetAutocompleteResultDelegate> _delegate;
     NSString *locationType;
     id json;
     BOOL isCurrentLocationUpdated;
@@ -47,7 +47,7 @@
 
 //Autocomplete
 - (void) fetchAutocompleteResult: (NSString *) searchKey;
-@property (nonatomic,strong) id <getAutocompleteResultDelegate>delegate;
+@property (nonatomic,strong) id <GetAutocompleteResultDelegate>delegate;
 - (void) fetchLatitudeLongitudeFromAddress: (NSString *) descriptionString;
 
 //Direction API
