@@ -8,7 +8,7 @@
 
 #import "DemoViewController.h"
 #import "MapViewController.h"
-
+#import "LoginViewController.h"
 @interface DemoViewController () {
     BOOL isLocationUpdateStart;
 }
@@ -40,14 +40,21 @@
 #pragma mark - Fetch database records
 - (IBAction)fetchRecords:(id)sender {
     UIStoryboard * storyboard=storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *pushView =[storyboard instantiateViewControllerWithIdentifier:@"RealTimeTrackViewController"];
-    [self.navigationController pushViewController:pushView animated:NO];
+    UIViewController *pushView =[storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
+    [self.navigationController pushViewController:pushView animated:YES];
 }
 #pragma mark - end
 
 #pragma mark - Empty database
 - (IBAction)emptyDatabaseAction:(id)sender {
     [MyDatabase deleteRecord:[@"delete from LocationTracking" UTF8String]];
-}
+ }
 #pragma mark - end
+- (IBAction)logoutAction:(id)sender {
+    [UserDefaultManager removeValue:@"userId"];
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController * loginView = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self.navigationController setViewControllers: [NSArray arrayWithObject:loginView]
+                                         animated: NO];
+}
 @end

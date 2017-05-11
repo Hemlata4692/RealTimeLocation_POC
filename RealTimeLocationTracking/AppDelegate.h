@@ -17,8 +17,11 @@
 - (void)stopIndicator;
 //Timer for local database
 @property (strong, nonatomic) NSTimer *localTimer;
+//Timer for server database
+@property (strong, nonatomic) NSTimer *serverTimer;
 //Timer for Real time tracking
 @property (strong, nonatomic) NSTimer *currentLocationTrackTimer;
+@property (nonatomic,retain) UINavigationController *navigationController;
 
 @end
 

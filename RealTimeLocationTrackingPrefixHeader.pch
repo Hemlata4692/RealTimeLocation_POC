@@ -17,6 +17,8 @@
 #import "MyDatabase.h"
 #import "Webservice.h"
 #import "NullValueChecker.h"
+#import "BSKeyboardControls.h"
+#import "TrackDetailModel.h"
 @import GoogleMaps;
 
 #define myDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])

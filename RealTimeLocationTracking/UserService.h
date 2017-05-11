@@ -10,8 +10,10 @@
 
 @interface UserService : NSObject
 
+//Singleton instance
 + (id)sharedManager;
 //Login screen method
 - (void)userLogin:(NSString *)email password:(NSString *)password success:(void (^)(id))success failure:(void (^)(NSError *))failure;
 //end
+
 @end

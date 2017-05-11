@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		3C6842C0C739F798BC8E6145 /* libPods-RealTimeLocationTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 098DEAB2FADCB3544492EB9E /* libPods-RealTimeLocationTracking.a */; };
 		5D5A0AB31E83F127009DBCD3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A0AB21E83F127009DBCD3 /* LoginViewController.m */; };
-		5D80E38C1E56F3D900041DAF /* LocationTracking.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5D80E38B1E56F3D900041DAF /* LocationTracking.sqlite */; };
+		5D65183C1EB73E2700FF1055 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D65183B1EB73E2700FF1055 /* MenuViewController.m */; };
+		5D6905091EAF303700E9269F /* TrackDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6905081EAF303700E9269F /* TrackDetailModel.m */; };
 		5D8123181E5563A90094DDB3 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8123151E5563A90094DDB3 /* SelectPlaceViewController.m */; };
 		5D8123191E5563A90094DDB3 /* SelectPlacesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8123171E5563A90094DDB3 /* SelectPlacesViewCell.m */; };
 		5D8884F31E84F7A30094B92A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8884F21E84F7A30094B92A /* BSKeyboardControls.m */; };
@@ -18,6 +19,7 @@
 		5D9147C21E5D9D6F00B24F17 /* StreetMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9147C11E5D9D6F00B24F17 /* StreetMapView.m */; };
 		5D9147C61E5DAB3700B24F17 /* DirectionPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9147C51E5DAB3700B24F17 /* DirectionPathViewController.m */; };
 		5D958B301E5EE5E700587104 /* UITextField+Validations.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D958B2F1E5EE5E700587104 /* UITextField+Validations.m */; };
+		5D976F571EA71AAC00D98FD0 /* TrackService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D976F561EA71AAC00D98FD0 /* TrackService.m */; };
 		5D9A40E11E5C00AD003F5517 /* GoogleMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9A40E01E5C00AD003F5517 /* GoogleMapView.m */; };
 		5D9D287C1E8A2F95007F03E4 /* Webservice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D287B1E8A2F95007F03E4 /* Webservice.m */; };
 		5D9D28811E8A3B8C007F03E4 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D28801E8A3B8C007F03E4 /* UserService.m */; };
@@ -30,7 +32,10 @@
 		5DA1FE051E52FCC60076B880 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DA1FE041E52FCC60076B880 /* CoreLocation.framework */; };
 		5DA1FE0D1E531D500076B880 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1FE0C1E531D500076B880 /* DemoViewController.m */; };
 		5DA1FE131E5326D40076B880 /* MyDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1FE121E5326D40076B880 /* MyDatabase.m */; };
+		5DA8D3541EB990EF00D94854 /* PathTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA8D3531EB990EF00D94854 /* PathTrackingViewController.m */; };
 		5DB9DE3E1E69215F009CBEDC /* RealTimeTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB9DE3D1E69215F009CBEDC /* RealTimeTrackViewController.m */; };
+		5DBAAD271EBC4F5300A4E48A /* LocationTracking.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5DBAAD261EBC4F5300A4E48A /* LocationTracking.sqlite */; };
+		5DD2A79E1EC1C35700DA5A97 /* TrackLocationDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD2A79D1EC1C35700DA5A97 /* TrackLocationDetailModel.m */; };
 		B782B71B1E52B9F400BA08B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B782B71A1E52B9F400BA08B2 /* main.m */; };
 		B782B71E1E52B9F400BA08B2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B782B71D1E52B9F400BA08B2 /* AppDelegate.m */; };
 		B782B7241E52B9F400BA08B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B782B7221E52B9F400BA08B2 /* Main.storyboard */; };
@@ -43,7 +48,10 @@
 		098DEAB2FADCB3544492EB9E /* libPods-RealTimeLocationTracking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RealTimeLocationTracking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5A0AB11E83F127009DBCD3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5D5A0AB21E83F127009DBCD3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		5D80E38B1E56F3D900041DAF /* LocationTracking.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LocationTracking.sqlite; sourceTree = "<group>"; };
+		5D65183A1EB73E2700FF1055 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		5D65183B1EB73E2700FF1055 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		5D6905071EAF303700E9269F /* TrackDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackDetailModel.h; sourceTree = "<group>"; };
+		5D6905081EAF303700E9269F /* TrackDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackDetailModel.m; sourceTree = "<group>"; };
 		5D8123141E5563A90094DDB3 /* SelectPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlaceViewController.h; sourceTree = "<group>"; };
 		5D8123151E5563A90094DDB3 /* SelectPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlaceViewController.m; sourceTree = "<group>"; };
 		5D8123161E5563A90094DDB3 /* SelectPlacesViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlacesViewCell.h; sourceTree = "<group>"; };
@@ -60,6 +68,8 @@
 		5D9147C51E5DAB3700B24F17 /* DirectionPathViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionPathViewController.m; sourceTree = "<group>"; };
 		5D958B2E1E5EE5E700587104 /* UITextField+Validations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Validations.h"; sourceTree = "<group>"; };
 		5D958B2F1E5EE5E700587104 /* UITextField+Validations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Validations.m"; sourceTree = "<group>"; };
+		5D976F551EA71AAC00D98FD0 /* TrackService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackService.h; sourceTree = "<group>"; };
+		5D976F561EA71AAC00D98FD0 /* TrackService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackService.m; sourceTree = "<group>"; };
 		5D9A40DF1E5C00AD003F5517 /* GoogleMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapView.h; sourceTree = "<group>"; };
 		5D9A40E01E5C00AD003F5517 /* GoogleMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapView.m; sourceTree = "<group>"; };
 		5D9D287A1E8A2F95007F03E4 /* Webservice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Webservice.h; sourceTree = "<group>"; };
@@ -83,8 +93,13 @@
 		5DA1FE0C1E531D500076B880 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		5DA1FE111E5326D40076B880 /* MyDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatabase.h; sourceTree = "<group>"; };
 		5DA1FE121E5326D40076B880 /* MyDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatabase.m; sourceTree = "<group>"; };
+		5DA8D3521EB990EF00D94854 /* PathTrackingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathTrackingViewController.h; sourceTree = "<group>"; };
+		5DA8D3531EB990EF00D94854 /* PathTrackingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathTrackingViewController.m; sourceTree = "<group>"; };
 		5DB9DE3C1E69215F009CBEDC /* RealTimeTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeTrackViewController.h; sourceTree = "<group>"; };
 		5DB9DE3D1E69215F009CBEDC /* RealTimeTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeTrackViewController.m; sourceTree = "<group>"; };
+		5DBAAD261EBC4F5300A4E48A /* LocationTracking.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LocationTracking.sqlite; sourceTree = "<group>"; };
+		5DD2A79C1EC1C35700DA5A97 /* TrackLocationDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackLocationDetailModel.h; sourceTree = "<group>"; };
+		5DD2A79D1EC1C35700DA5A97 /* TrackLocationDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackLocationDetailModel.m; sourceTree = "<group>"; };
 		B782B7161E52B9F400BA08B2 /* RealTimeLocationTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealTimeLocationTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B782B71A1E52B9F400BA08B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B782B71C1E52B9F400BA08B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -117,6 +132,26 @@
 				5D5A0AB21E83F127009DBCD3 /* LoginViewController.m */,
 			);
 			name = UserModule;
+			sourceTree = "<group>";
+		};
+		5D6518391EB73E0000FF1055 /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				5D65183A1EB73E2700FF1055 /* MenuViewController.h */,
+				5D65183B1EB73E2700FF1055 /* MenuViewController.m */,
+			);
+			name = MenuView;
+			sourceTree = "<group>";
+		};
+		5D6905061EAF300200E9269F /* TrackDetailModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D6905071EAF303700E9269F /* TrackDetailModel.h */,
+				5D6905081EAF303700E9269F /* TrackDetailModel.m */,
+				5DD2A79C1EC1C35700DA5A97 /* TrackLocationDetailModel.h */,
+				5DD2A79D1EC1C35700DA5A97 /* TrackLocationDetailModel.m */,
+			);
+			name = TrackDetailModel;
 			sourceTree = "<group>";
 		};
 		5D81231B1E5563B50094DDB3 /* SelectPlacesViewCell */ = {
@@ -200,6 +235,15 @@
 				5D958B2F1E5EE5E700587104 /* UITextField+Validations.m */,
 			);
 			name = ValidationCategory;
+			sourceTree = "<group>";
+		};
+		5D976F541EA71A5100D98FD0 /* TrackService */ = {
+			isa = PBXGroup;
+			children = (
+				5D976F551EA71AAC00D98FD0 /* TrackService.h */,
+				5D976F561EA71AAC00D98FD0 /* TrackService.m */,
+			);
+			name = TrackService;
 			sourceTree = "<group>";
 		};
 		5D9D287D1E8A3B55007F03E4 /* GlobalService */ = {
@@ -308,6 +352,7 @@
 		5DA1FDED1E52DF190076B880 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				5D6905061EAF300200E9269F /* TrackDetailModel */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -315,6 +360,7 @@
 		5DA1FDEE1E52DF1C0076B880 /* Webservice */ = {
 			isa = PBXGroup;
 			children = (
+				5D976F541EA71A5100D98FD0 /* TrackService */,
 				5D9D287E1E8A3B67007F03E4 /* UserService */,
 				5D9D287D1E8A3B55007F03E4 /* GlobalService */,
 			);
@@ -334,7 +380,6 @@
 			children = (
 				5D5A0AB01E83F105009DBCD3 /* UserModule */,
 				5DA1FDFA1E52E7BE0076B880 /* DemoModule */,
-				5DA1FDF91E52E65C0076B880 /* InstantSearchModule */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -359,10 +404,13 @@
 		5DA1FDFA1E52E7BE0076B880 /* DemoModule */ = {
 			isa = PBXGroup;
 			children = (
+				5D9147BE1E5D91B000B24F17 /* MainDemoView */,
+				5D6518391EB73E0000FF1055 /* MenuView */,
+				5D9147BC1E5D441E00B24F17 /* MapView */,
+				5DA8D3511EB9905900D94854 /* PathTrackingView */,
 				5DB9DE3B1E692102009CBEDC /* RealTimeTrackingView */,
 				5D9147C31E5DAAF700B24F17 /* DirectionModule */,
-				5D9147BE1E5D91B000B24F17 /* MainDemoView */,
-				5D9147BC1E5D441E00B24F17 /* MapView */,
+				5DA1FDF91E52E65C0076B880 /* InstantSearchModule */,
 			);
 			name = DemoModule;
 			sourceTree = "<group>";
@@ -370,7 +418,7 @@
 		5DA1FDFB1E52E83D0076B880 /* DatabaseHandler */ = {
 			isa = PBXGroup;
 			children = (
-				5D80E38B1E56F3D900041DAF /* LocationTracking.sqlite */,
+				5DBAAD261EBC4F5300A4E48A /* LocationTracking.sqlite */,
 				5DA1FE111E5326D40076B880 /* MyDatabase.h */,
 				5DA1FE121E5326D40076B880 /* MyDatabase.m */,
 			);
@@ -385,6 +433,15 @@
 				098DEAB2FADCB3544492EB9E /* libPods-RealTimeLocationTracking.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5DA8D3511EB9905900D94854 /* PathTrackingView */ = {
+			isa = PBXGroup;
+			children = (
+				5DA8D3521EB990EF00D94854 /* PathTrackingViewController.h */,
+				5DA8D3531EB990EF00D94854 /* PathTrackingViewController.m */,
+			);
+			name = PathTrackingView;
 			sourceTree = "<group>";
 		};
 		5DB9DE3B1E692102009CBEDC /* RealTimeTrackingView */ = {
@@ -513,7 +570,7 @@
 				B782B7291E52B9F400BA08B2 /* LaunchScreen.storyboard in Resources */,
 				B782B7261E52B9F400BA08B2 /* Assets.xcassets in Resources */,
 				B782B7241E52B9F400BA08B2 /* Main.storyboard in Resources */,
-				5D80E38C1E56F3D900041DAF /* LocationTracking.sqlite in Resources */,
+				5DBAAD271EBC4F5300A4E48A /* LocationTracking.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,12 +631,16 @@
 			files = (
 				5D90B7F21E54583500F14797 /* Internet.m in Sources */,
 				B782B71E1E52B9F400BA08B2 /* AppDelegate.m in Sources */,
+				5DA8D3541EB990EF00D94854 /* PathTrackingViewController.m in Sources */,
 				5DA1FDEB1E52DEEC0076B880 /* NullValueChecker.m in Sources */,
 				5DA1FE131E5326D40076B880 /* MyDatabase.m in Sources */,
 				5D8123181E5563A90094DDB3 /* SelectPlaceViewController.m in Sources */,
 				5D9147C61E5DAB3700B24F17 /* DirectionPathViewController.m in Sources */,
 				5D90B7F51E5459E200F14797 /* Reachability.m in Sources */,
+				5DD2A79E1EC1C35700DA5A97 /* TrackLocationDetailModel.m in Sources */,
 				5DA1FDF81E52E2780076B880 /* MMMaterialDesignSpinner.m in Sources */,
+				5D976F571EA71AAC00D98FD0 /* TrackService.m in Sources */,
+				5D65183C1EB73E2700FF1055 /* MenuViewController.m in Sources */,
 				5D9A40E11E5C00AD003F5517 /* GoogleMapView.m in Sources */,
 				5D9D287C1E8A2F95007F03E4 /* Webservice.m in Sources */,
 				5D9147C21E5D9D6F00B24F17 /* StreetMapView.m in Sources */,
@@ -593,6 +654,7 @@
 				5D8884F31E84F7A30094B92A /* BSKeyboardControls.m in Sources */,
 				5D9E47D81E5AB64F006949A9 /* MapViewController.m in Sources */,
 				5D9D28811E8A3B8C007F03E4 /* UserService.m in Sources */,
+				5D6905091EAF303700E9269F /* TrackDetailModel.m in Sources */,
 				5DB9DE3E1E69215F009CBEDC /* RealTimeTrackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

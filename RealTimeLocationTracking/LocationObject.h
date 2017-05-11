@@ -37,12 +37,11 @@
     NSString *trackingLatitude, *trackingLongitude,*trackingDate;
     NSString *oldTrackingLatitude, *oldTrackingLongitude;
     int minDistforDB;
-    
     //Current location
     BOOL isRealTimeLocationUpdated;
     int minDistforCL;
     NSString *trackingLatitudeCL, *trackingLongitudeCL;
-    NSString *oldTrackingLatitudeCL, *oldTrackingLongitudeCL;
+    NSString *oldTrackingLatitudeCL, *oldTrackingLongitudeCL,*trackingDateCL;
 }
 
 //Autocomplete
@@ -63,7 +62,7 @@
 - (void)getAddressMethod:(CLLocationCoordinate2D )locationCoordinate isDirectionScreen:(BOOL)isDirectionScreen;
 
 //Background location tracking
-- (void)startTrack:(int)syncTime dist:(int)dist;
+- (void)startTrack:(int)localSyncTime serverSyncTime:(int)serverSyncTime dist:(int)dist;
 - (void)stopTrack;
 
 //Real time tracking path

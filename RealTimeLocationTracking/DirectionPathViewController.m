@@ -76,7 +76,7 @@
         UIStoryboard * storyboard=storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SelectPlaceViewController *pushView =[storyboard instantiateViewControllerWithIdentifier:@"SelectPlaceViewController"];
         pushView.isDirectionView = true;
-        pushView.DirectionViewObj=self;
+        pushView.directionViewObj=self;
         [self.navigationController pushViewController:pushView animated:NO];
     } else {
     }

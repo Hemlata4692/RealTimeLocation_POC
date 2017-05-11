@@ -44,11 +44,11 @@
     //Background tracking
     if ([UserDefaultManager getValue:@"isTrackingStart"] == NULL || [[UserDefaultManager getValue:@"isTrackingStart"] isEqualToString:@"false"]) {
         _trackingButton.selected = NO;
-        [_trackingButton setTitle:@"Start" forState:UIControlStateNormal];
+        [_trackingButton setTitle:@"Start location tracking" forState:UIControlStateNormal];
     }
     else {
         _trackingButton.selected = YES;
-        [_trackingButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [_trackingButton setTitle:@"Stop location tracking" forState:UIControlStateNormal];
     }
 }
 
@@ -99,15 +99,15 @@
 - (IBAction)startLocationTrackingAction:(id)sender {
     if (_trackingButton.selected) {
         _trackingButton.selected = NO;
-        [_trackingButton setTitle:@"Start" forState:UIControlStateNormal];
+        [_trackingButton setTitle:@"Start location tracking" forState:UIControlStateNormal];
         [UserDefaultManager setValue:@"false" key:@"isTrackingStart"];
         [locationManager stopTrack];
     }
     else {
         _trackingButton.selected = YES;
-        [_trackingButton setTitle:@"Stop" forState:UIControlStateNormal];
+        [_trackingButton setTitle:@"Stop location tracking" forState:UIControlStateNormal];
         [UserDefaultManager setValue:@"true" key:@"isTrackingStart"];
-        [locationManager startTrack:10 dist:0];
+        [locationManager startTrack:10 serverSyncTime:60 dist:0];
     }
 }
 #pragma mark - end
@@ -117,7 +117,7 @@
     UIStoryboard * storyboard=storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SelectPlaceViewController *pushView =[storyboard instantiateViewControllerWithIdentifier:@"SelectPlaceViewController"];
     pushView.isDirectionView = false;
-    pushView.MapViewObj=self;
+    pushView.mapViewObj=self;
     [self.navigationController pushViewController:pushView animated:YES];
 }
 

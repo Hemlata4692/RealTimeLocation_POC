@@ -76,11 +76,11 @@
 }
 
 - (BOOL)isStatusOK:(id)responseObject {
-    NSNumber *number = responseObject[@"isSuccess"];
+    NSNumber *number = responseObject[@"is_success"];
     NSString *msg;
     switch (number.integerValue) {
         case 0: {
-            msg = responseObject[@"message"];
+            msg = responseObject[@"msg"];
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Alert" message:msg delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
             [alert show];
             return NO;

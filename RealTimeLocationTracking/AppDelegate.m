@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "MMMaterialDesignSpinner.h"
 #import "MyDatabase.h"
-
+#import "LoginViewController.h"
+#import "DemoViewController.h"
 @import GoogleMaps;
 
 @interface AppDelegate ()<CLLocationManagerDelegate> {
@@ -52,16 +53,35 @@
 }
 #pragma mark - end
 
-#pragma mark - App life cycle
+#pragma mark - App lifecycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //Navigation bar appearance
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:30/255.0 green:185/255.0 blue:213.0/255.0 alpha:1.0]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"Helvetica-Regular" size:19.0], NSFontAttributeName, nil]];
     //Google API key(monika@ranosys.com)
     [GMSServices provideAPIKey:googleAPIKey];
-    [UserDefaultManager setValue:@"1" key:@"userId"];
     //check if database exists or not.
     [MyDatabase checkDataBaseExistence];
     //Background tracking
     [UserDefaultManager setValue:@"false" key:@"isTrackingStart"];
     [UserDefaultManager setValue:@"false" key:@"isRealTimeTrackingStart"];
+    //Empty self tracking local database
+    [MyDatabase deleteRecord:[@"delete from SelfLocationTracking" UTF8String]];
+    //Navigation to view
+    NSLog(@"userId %@",[UserDefaultManager getValue:@"userId"]);
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]!=nil) {
+        DemoViewController * loginView = [storyboard instantiateViewControllerWithIdentifier:@"DemoViewController"];
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [self.window setRootViewController:loginView];
+        [self.window makeKeyAndVisible];
+    }
+    else {
+        LoginViewController * loginView = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self.navigationController setViewControllers: [NSArray arrayWithObject:loginView]
+                                             animated: YES];
+    }
     return YES;
 }
 

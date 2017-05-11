@@ -1,18 +1,14 @@
-//
-//  LoginViewController.m
-//  RealTimeLocationTracking
-//
-//  Created by Monika Sharma on 23/03/17.
-//  Copyright © 2017 Ranosys. All rights reserved.
-//
 
 #import "LoginViewController.h"
 #import "UserService.h"
-
-@interface LoginViewController ()
+#import "DemoViewController.h"
+@interface LoginViewController ()<UITextFieldDelegate,BSKeyboardControlsDelegate>{
+    NSArray *textfieldArray;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *emailText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
+@property (nonatomic, strong) BSKeyboardControls *keyboardControls;
 
 @end
 
@@ -21,7 +17,16 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    //BSKeyboard
+    textfieldArray = @[_emailText,_passwordText];
+    [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:textfieldArray]];
+    [self.keyboardControls setDelegate:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +49,12 @@
 -(void)loginUser {
     [[UserService sharedManager] userLogin:_emailText.text password:_passwordText.text success:^(id responseObject) {
         [myDelegate stopIndicator];
-        [UserDefaultManager setValue:[responseObject objectForKey:@"userId"] key:@"userId"];
+        [UserDefaultManager setValue:[responseObject objectForKey:@"user_id"] key:@"userId"];
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        DemoViewController * loginView = [storyboard instantiateViewControllerWithIdentifier:@"DemoViewController"];
+        [myDelegate.window setRootViewController:loginView];
+        [myDelegate.window makeKeyAndVisible];
+        
     } failure:^(NSError *error) {
     }] ;
 }
@@ -84,7 +94,7 @@
                                           alertControllerWithTitle:@"Alert"
                                           message:message
                                           preferredStyle:UIAlertControllerStyleAlert];
-     UIAlertAction *okAction = [UIAlertAction
+    UIAlertAction *okAction = [UIAlertAction
                                actionWithTitle:@"OK"
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action) {
@@ -95,14 +105,27 @@
 }
 #pragma mark - end
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Keyboard controls delegate
+- (void)keyboardControls:(BSKeyboardControls *)keyboardControls selectedField:(UIView *)field inDirection:(BSKeyboardControlsDirection)direction
+{
+    UIView *view;
+    view = field.superview.superview.superview;
+}
+- (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyboardControls
+{
+    [keyboardControls.activeField resignFirstResponder];
+}
+#pragma mark - end
+
+#pragma mark - Textfield delegates
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self.keyboardControls setActiveField:textField];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+#pragma mark - end
 
 @end
