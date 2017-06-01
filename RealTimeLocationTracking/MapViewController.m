@@ -29,6 +29,7 @@
     [self fetchCurrentLocation];
     //Show fetched address
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPinOnLcation:) name:@"newLocationAddress" object:nil];
+    [self addMenuButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,6 +41,7 @@
         [locationManager getAddressMethod:currentLocation isDirectionScreen:NO];
     }
     //Hide navigation bar
+    self.navigationItem.title = @"Where to go ?";
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     //Background tracking
     if ([UserDefaultManager getValue:@"isTrackingStart"] == NULL || [[UserDefaultManager getValue:@"isTrackingStart"] isEqualToString:@"false"]) {

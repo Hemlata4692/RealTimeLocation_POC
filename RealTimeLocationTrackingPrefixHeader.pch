@@ -19,6 +19,9 @@
 #import "NullValueChecker.h"
 #import "BSKeyboardControls.h"
 #import "TrackDetailModel.h"
+#import "GlobalViewController.h"
+#import "SCLAlertView.h"
+
 @import GoogleMaps;
 
 #define myDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])

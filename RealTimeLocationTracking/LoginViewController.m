@@ -50,9 +50,16 @@
     [[UserService sharedManager] userLogin:_emailText.text password:_passwordText.text success:^(id responseObject) {
         [myDelegate stopIndicator];
         [UserDefaultManager setValue:[responseObject objectForKey:@"user_id"] key:@"userId"];
+        [UserDefaultManager setValue:_emailText.text key:@"email"];
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        DemoViewController * loginView = [storyboard instantiateViewControllerWithIdentifier:@"DemoViewController"];
-        [myDelegate.window setRootViewController:loginView];
+//        DemoViewController * loginView = [storyboard instantiateViewControllerWithIdentifier:@"DemoViewController"];
+//        [myDelegate.window setRootViewController:loginView];
+//        [myDelegate.window makeKeyAndVisible];
+        
+        UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+        myDelegate.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [myDelegate.window setRootViewController:objReveal];
+        [myDelegate.window setBackgroundColor:[UIColor whiteColor]];
         [myDelegate.window makeKeyAndVisible];
         
     } failure:^(NSError *error) {

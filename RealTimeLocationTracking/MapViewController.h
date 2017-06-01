@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationObject.h"
+#import "GlobalViewController.h"
 
-@interface MapViewController : UIViewController
+@interface MapViewController : GlobalViewController
+
 @property (strong, nonatomic) NSString *latitude;
 @property (strong, nonatomic) NSString *longitude;
 @property (strong, nonatomic) NSString *otherLocation;

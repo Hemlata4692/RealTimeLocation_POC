@@ -40,7 +40,6 @@ static sqlite3 *locationTrackingDatabase = nil;
 
 #pragma mark - Insert query
 + (void)insertIntoDatabase:(const char *)query tempArray:(NSArray *)tempArray {
-    
     NSLog(@"insertIntoDatabase !!!!");
     sqlite3_stmt *dataRows=nil;
     if(sqlite3_open([[self getDBPath] UTF8String],&locationTrackingDatabase) == SQLITE_OK) {
