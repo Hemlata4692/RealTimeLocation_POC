@@ -21,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     locationManager = [[LocationObject alloc]init];
+    self.navigationItem.title = @"Get Directions";
+    [self addMenuButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,7 +80,6 @@
         pushView.isDirectionView = true;
         pushView.directionViewObj=self;
         [self.navigationController pushViewController:pushView animated:NO];
-    } else {
     }
 }
 
@@ -183,7 +184,6 @@
                                           alertControllerWithTitle:@"Alert"
                                           message:alertMessage
                                           preferredStyle:UIAlertControllerStyleAlert];
-    
     UIAlertAction* okAction = [UIAlertAction
                                actionWithTitle:@"OK"
                                style:UIAlertActionStyleDefault

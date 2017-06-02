@@ -30,6 +30,8 @@
     _mapview.delegate=self;
     locationManager = [[LocationObject alloc]init];
     pathLatLongArray = [[NSMutableArray alloc]init];
+    self.navigationItem.title = @"Show Route";
+    [self addBackButton];
 }
 
 - (void)didReceiveMemoryWarning {

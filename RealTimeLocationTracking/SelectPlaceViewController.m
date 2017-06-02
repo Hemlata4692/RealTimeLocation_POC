@@ -33,6 +33,9 @@
     locationArray=[[NSArray alloc]init];
     searchResultArray=[[NSArray alloc]init];
     locationManager = [[LocationObject alloc]init];
+    [self addBackButton];
+    //Remove extra separators
+    [[UITableView appearance] setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -125,12 +128,12 @@
         directionViewObj.latitude=latLongDict[@"lat"];
         directionViewObj.longitude=latLongDict[@"lng"];
         directionViewObj.autoCompleteLocation=@"2";
-        [self.navigationController popToViewController:[array objectAtIndex:2] animated:YES];
+        [self.navigationController popToViewController:[array objectAtIndex:0] animated:YES];
     } else {
         mapViewObj.latitude=latLongDict[@"lat"];
         mapViewObj.longitude=latLongDict[@"lng"];
         mapViewObj.otherLocation=@"1";
-        [self.navigationController popToViewController:[array objectAtIndex:1] animated:YES];
+        [self.navigationController popToViewController:[array objectAtIndex:0] animated:YES];
     }
 }
 #pragma mark - end

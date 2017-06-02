@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PathTrackingViewController : UIViewController
+@interface PathTrackingViewController : GlobalViewController
 @property (nonatomic, strong) LocationObject *locationManager;
 @end

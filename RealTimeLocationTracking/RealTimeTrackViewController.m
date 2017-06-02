@@ -40,6 +40,8 @@
     } else {
         [self fetchRecordsFromDatabase];
     }
+    self.navigationItem.title = @"Show Route";
+    [self addBackButton];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DirectionPathViewController : UIViewController
+@interface DirectionPathViewController : GlobalViewController
 @property (strong, nonatomic) NSString *latitude;
 @property (strong, nonatomic) NSString *longitude;
 @property (strong, nonatomic) NSString *autoCompleteLocation;

@@ -11,7 +11,7 @@
 #import "DirectionPathViewController.h"
 #import "LocationObject.h"
 
-@interface SelectPlaceViewController : UIViewController
+@interface SelectPlaceViewController : GlobalViewController
 @property(strong, nonatomic) MapViewController *mapViewObj;
 @property(strong, nonatomic) DirectionPathViewController *directionViewObj;
 @property (nonatomic, strong) LocationObject *locationManager;

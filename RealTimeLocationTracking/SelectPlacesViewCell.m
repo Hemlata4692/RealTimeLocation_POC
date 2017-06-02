@@ -29,7 +29,7 @@
 - (void)displaySearchAutocompleteData:(NSDictionary*)autocompleteDict rectSize:(CGSize)rectSize {
     placeName.translatesAutoresizingMaskIntoConstraints=YES;
     placeAddress.translatesAutoresizingMaskIntoConstraints=YES;
-    placeName.frame =CGRectMake(38, 15, rectSize.width-50, placeName.frame.size.height);
+    placeName.frame =CGRectMake(38, 5, rectSize.width-50, placeName.frame.size.height);
     placeAddress.frame =CGRectMake(38, placeName.frame.origin.y+placeName.frame.size.height+4, rectSize.width-50, placeAddress.frame.size.height);
     NSString *descriptionString =autocompleteDict[@"description"];
     NSArray *searchArray = [descriptionString componentsSeparatedByString:@","];
@@ -38,7 +38,7 @@
     CGRect textRect = [[searchArray objectAtIndex:0]
                        boundingRectWithSize:size
                        options:NSStringDrawingUsesLineFragmentOrigin
-                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:17.0]}
+                       attributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:14.0]}
                        context:nil];
     placeName.numberOfLines = 0;
     placeName.frame = textRect;
@@ -62,7 +62,7 @@
     CGRect textRect1 = [addressString
                         boundingRectWithSize:size1
                         options:NSStringDrawingUsesLineFragmentOrigin
-                        attributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:15.0]}
+                        attributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue" size:12.0]}
                         context:nil];
     placeAddress.numberOfLines = 0;
     placeAddress.frame = textRect1;

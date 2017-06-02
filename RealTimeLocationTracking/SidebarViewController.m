@@ -30,7 +30,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    menuItems = @[@"Dashboard",@"Your trips",@"Payment", @"Logout"];
+    menuItems = @[@"Dashboard",@"Your trips",@"Payment",@"Logout",@"Get Directions",@"Show Route"];
     self.tableView.scrollEnabled=NO;
     [self.revealViewController.frontViewController.view setUserInteractionEnabled:NO];
     [self.tableView reloadData];
@@ -67,7 +67,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     //Side bar customisation
     cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
-    cell.textLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:15.0];
+//    cell.textLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:15.0];
      return cell;
 }
 
@@ -118,23 +118,25 @@
     //Name label
     UILabel * nameLabel;
     UILabel *emailLabel;
-    CGSize size = CGSizeMake(self.view.frame.size.width-10,50);
-    CGRect textRect = [self setDynamicHeight:size textString:[UserDefaultManager getValue:@"name"]];
-    
-    if (textRect.size.height < 40){
-        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, ProfileImgView.frame.origin.y + ProfileImgView.frame.size.height + 15, tableView.bounds.size.width - 10, textRect.size.height+1)];
-        emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, nameLabel.frame.origin.y + nameLabel.frame.size.height +10, tableView.bounds.size.width - 10, nameHeight)];
-    }
-    else {
-        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, ProfileImgView.frame.origin.y + ProfileImgView.frame.size.height + 5, tableView.bounds.size.width - 10, textRect.size.height+1)];
-        emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, nameLabel.frame.origin.y + nameLabel.frame.size.height +1, tableView.bounds.size.width - 10, nameHeight)];
-    }
-    nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.textAlignment=NSTextAlignmentCenter;
-    nameLabel.textColor=[UIColor whiteColor];
-    nameLabel.numberOfLines = 2;
-    nameLabel.text=[UserDefaultManager getValue:@"name"];
+//    CGSize size = CGSizeMake(self.view.frame.size.width-10,50);
+//    CGRect textRect = [self setDynamicHeight:size textString:[UserDefaultManager getValue:@"name"]];
+//    
+//    if (textRect.size.height < 40){
+//        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, ProfileImgView.frame.origin.y + ProfileImgView.frame.size.height + 15, tableView.bounds.size.width - 10, textRect.size.height+1)];
+//        emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, nameLabel.frame.origin.y + nameLabel.frame.size.height +10, tableView.bounds.size.width - 10, nameHeight)];
+//    }
+//    else {
+//        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, ProfileImgView.frame.origin.y + ProfileImgView.frame.size.height + 5, tableView.bounds.size.width - 10, textRect.size.height+1)];
+//        emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, nameLabel.frame.origin.y + nameLabel.frame.size.height +1, tableView.bounds.size.width - 10, nameHeight)];
+//    }
+//    nameLabel.backgroundColor = [UIColor clearColor];
+//    nameLabel.textAlignment=NSTextAlignmentCenter;
+//    nameLabel.textColor=[UIColor whiteColor];
+//    nameLabel.numberOfLines = 2;
+//    nameLabel.text=[UserDefaultManager getValue:@"name"];
     //Email label
+    
+    emailLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, ProfileImgView.frame.origin.y + ProfileImgView.frame.size.height +30, tableView.bounds.size.width - 10, nameHeight)];
     emailLabel.backgroundColor = [UIColor clearColor];
     emailLabel.textAlignment=NSTextAlignmentCenter;
     emailLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -142,7 +144,7 @@
     emailLabel.textColor=[UIColor whiteColor];
     emailLabel.font = [UIFont fontWithName:@"Roboto-Regular" size:14];
     emailLabel.text = [UserDefaultManager getValue:@"email"];
-    [headerView addSubview:nameLabel];
+//    [headerView addSubview:nameLabel];
     [headerView addSubview:emailLabel];
     [headerView addSubview:ProfileImgView];
     
@@ -160,13 +162,16 @@
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 3) {
+        [self logoutUser];
+    }
 }
 - (void)logoutUser {
         SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
         [alert addButton:@"Yes" actionBlock:^(void) {
             [self removeDefaultValues];
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            myDelegate.navigationController = [storyboard instantiateViewControllerWithIdentifier:@"mainNavController"];
+            myDelegate.navigationController = [storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
             myDelegate.window.rootViewController = myDelegate.navigationController;
         }];
         [alert showWarning:nil title:@"Alert" subTitle:@"Are you sure, you want to logout" closeButtonTitle:@"No" duration:0.0f];

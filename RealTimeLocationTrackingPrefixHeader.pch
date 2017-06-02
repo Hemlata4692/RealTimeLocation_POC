@@ -21,6 +21,7 @@
 #import "TrackDetailModel.h"
 #import "GlobalViewController.h"
 #import "SCLAlertView.h"
+#import "UIView+RoundedCorner.h"
 
 @import GoogleMaps;
 

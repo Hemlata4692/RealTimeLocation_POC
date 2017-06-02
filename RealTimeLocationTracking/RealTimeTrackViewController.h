@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RealTimeTrackViewController : UIViewController
+@interface RealTimeTrackViewController : GlobalViewController
 
 @property (nonatomic, strong) LocationObject *locationManager;
 @property (nonatomic) long  selectedMenu;

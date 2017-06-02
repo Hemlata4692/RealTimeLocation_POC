@@ -17,6 +17,12 @@
 		5D4D78C11EDFEE9E005E4F39 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D78B71EDFEE9E005E4F39 /* SCLTimerDisplay.m */; };
 		5D4D78C21EDFEE9E005E4F39 /* SCLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D78B91EDFEE9E005E4F39 /* SCLTextView.m */; };
 		5D4D78C31EDFEE9E005E4F39 /* SCLSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D78BB1EDFEE9E005E4F39 /* SCLSwitchView.m */; };
+		5D4D78C71EDFF2F9005E4F39 /* UIView+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D78C61EDFF2F9005E4F39 /* UIView+RoundedCorner.m */; };
+		5D4D78C91EDFF6A7005E4F39 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D4D78C81EDFF6A7005E4F39 /* back.png */; };
+		5D4D78CB1EE0138A005E4F39 /* location_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D4D78CA1EE0138A005E4F39 /* location_icon.png */; };
+		5D4D78CF1EE026D1005E4F39 /* uber_black_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D4D78CD1EE026D1005E4F39 /* uber_black_logo.png */; };
+		5D4D78D21EE0278A005E4F39 /* uber_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D4D78D11EE0278A005E4F39 /* uber_logo.png */; };
+		5D4D78D61EE02EFD005E4F39 /* location.icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D4D78D51EE02EFD005E4F39 /* location.icon.png */; };
 		5D5A0AB31E83F127009DBCD3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5A0AB21E83F127009DBCD3 /* LoginViewController.m */; };
 		5D65183C1EB73E2700FF1055 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D65183B1EB73E2700FF1055 /* MenuViewController.m */; };
 		5D6905091EAF303700E9269F /* TrackDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6905081EAF303700E9269F /* TrackDetailModel.m */; };
@@ -24,6 +30,7 @@
 		5D7FC8581EDFD858001ED018 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7FC8571EDFD858001ED018 /* SWRevealViewController.m */; };
 		5D8123181E5563A90094DDB3 /* SelectPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8123151E5563A90094DDB3 /* SelectPlaceViewController.m */; };
 		5D8123191E5563A90094DDB3 /* SelectPlacesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8123171E5563A90094DDB3 /* SelectPlacesViewCell.m */; };
+		5D856F4D1EE16117000987B6 /* car_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D856F4C1EE16117000987B6 /* car_icon.png */; };
 		5D8884F31E84F7A30094B92A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8884F21E84F7A30094B92A /* BSKeyboardControls.m */; };
 		5D90B7F21E54583500F14797 /* Internet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D90B7F11E54583500F14797 /* Internet.m */; };
 		5D90B7F51E5459E200F14797 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D90B7F41E5459E200F14797 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -77,6 +84,13 @@
 		5D4D78B91EDFEE9E005E4F39 /* SCLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTextView.m; sourceTree = "<group>"; };
 		5D4D78BA1EDFEE9E005E4F39 /* SCLSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLSwitchView.h; sourceTree = "<group>"; };
 		5D4D78BB1EDFEE9E005E4F39 /* SCLSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLSwitchView.m; sourceTree = "<group>"; };
+		5D4D78C51EDFF2F9005E4F39 /* UIView+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RoundedCorner.h"; sourceTree = "<group>"; };
+		5D4D78C61EDFF2F9005E4F39 /* UIView+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RoundedCorner.m"; sourceTree = "<group>"; };
+		5D4D78C81EDFF6A7005E4F39 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		5D4D78CA1EE0138A005E4F39 /* location_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_icon.png; sourceTree = "<group>"; };
+		5D4D78CD1EE026D1005E4F39 /* uber_black_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uber_black_logo.png; sourceTree = "<group>"; };
+		5D4D78D11EE0278A005E4F39 /* uber_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uber_logo.png; sourceTree = "<group>"; };
+		5D4D78D51EE02EFD005E4F39 /* location.icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.icon.png; sourceTree = "<group>"; };
 		5D5A0AB11E83F127009DBCD3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5D5A0AB21E83F127009DBCD3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		5D65183A1EB73E2700FF1055 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -91,6 +105,7 @@
 		5D8123151E5563A90094DDB3 /* SelectPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlaceViewController.m; sourceTree = "<group>"; };
 		5D8123161E5563A90094DDB3 /* SelectPlacesViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlacesViewCell.h; sourceTree = "<group>"; };
 		5D8123171E5563A90094DDB3 /* SelectPlacesViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlacesViewCell.m; sourceTree = "<group>"; };
+		5D856F4C1EE16117000987B6 /* car_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_icon.png; sourceTree = "<group>"; };
 		5D8884F11E84F7A30094B92A /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
 		5D8884F21E84F7A30094B92A /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		5D90B7F01E54583500F14797 /* Internet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internet.h; sourceTree = "<group>"; };
@@ -193,6 +208,28 @@
 				5D4D78BB1EDFEE9E005E4F39 /* SCLSwitchView.m */,
 			);
 			name = AlertView;
+			sourceTree = "<group>";
+		};
+		5D4D78C41EDFF2E7005E4F39 /* CornderRadiusAndBorder */ = {
+			isa = PBXGroup;
+			children = (
+				5D4D78C51EDFF2F9005E4F39 /* UIView+RoundedCorner.h */,
+				5D4D78C61EDFF2F9005E4F39 /* UIView+RoundedCorner.m */,
+			);
+			name = CornderRadiusAndBorder;
+			sourceTree = "<group>";
+		};
+		5D4D78CC1EE026B6005E4F39 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5D856F4C1EE16117000987B6 /* car_icon.png */,
+				5D4D78D51EE02EFD005E4F39 /* location.icon.png */,
+				5D4D78CD1EE026D1005E4F39 /* uber_black_logo.png */,
+				5D4D78D11EE0278A005E4F39 /* uber_logo.png */,
+				5D4D78CA1EE0138A005E4F39 /* location_icon.png */,
+				5D4D78C81EDFF6A7005E4F39 /* back.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		5D5A0AB01E83F105009DBCD3 /* UserModule */ = {
@@ -458,6 +495,7 @@
 		5DA1FDEF1E52E1CC0076B880 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5D4D78C41EDFF2E7005E4F39 /* CornderRadiusAndBorder */,
 				5D4D78AA1EDFEE7B005E4F39 /* AlertView */,
 				5DA1FDF51E52E26F0076B880 /* MMMaterialDesignSpinner */,
 			);
@@ -575,6 +613,7 @@
 		B782B7181E52B9F400BA08B2 /* RealTimeLocationTracking */ = {
 			isa = PBXGroup;
 			children = (
+				5D4D78CC1EE026B6005E4F39 /* Images */,
 				5D9295471EC475B700EC3873 /* ARCarMovement.h */,
 				5D9295481EC475B700EC3873 /* ARCarMovement.m */,
 				5DA1FDE01E52D83C0076B880 /* AppDelegate */,
@@ -662,9 +701,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B782B7291E52B9F400BA08B2 /* LaunchScreen.storyboard in Resources */,
+				5D4D78C91EDFF6A7005E4F39 /* back.png in Resources */,
 				B782B7261E52B9F400BA08B2 /* Assets.xcassets in Resources */,
+				5D4D78CF1EE026D1005E4F39 /* uber_black_logo.png in Resources */,
+				5D4D78D61EE02EFD005E4F39 /* location.icon.png in Resources */,
+				5D4D78CB1EE0138A005E4F39 /* location_icon.png in Resources */,
 				B782B7241E52B9F400BA08B2 /* Main.storyboard in Resources */,
+				5D4D78D21EE0278A005E4F39 /* uber_logo.png in Resources */,
 				5DBAAD271EBC4F5300A4E48A /* LocationTracking.sqlite in Resources */,
+				5D856F4D1EE16117000987B6 /* car_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +799,7 @@
 				5DA1FDE71E52DED10076B880 /* UserDefaultManager.m in Sources */,
 				5DA1FE0D1E531D500076B880 /* DemoViewController.m in Sources */,
 				B782B71B1E52B9F400BA08B2 /* main.m in Sources */,
+				5D4D78C71EDFF2F9005E4F39 /* UIView+RoundedCorner.m in Sources */,
 				5D5A0AB31E83F127009DBCD3 /* LoginViewController.m in Sources */,
 				5D9E47DB1E5AFDB2006949A9 /* LocationObject.m in Sources */,
 				5D4D78C21EDFEE9E005E4F39 /* SCLTextView.m in Sources */,

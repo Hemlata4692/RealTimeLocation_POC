@@ -22,7 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"Show Route";
     menuArray = [NSArray arrayWithObjects:@"Show path from database",@"Show path from server",@"Show real time moving path", nil];
+    [self addMenuButton];
+    //Remove extra separators
+    [[UITableView appearance] setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)didReceiveMemoryWarning {
